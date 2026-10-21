@@ -1,8 +1,12 @@
 import { loadFont } from "@remotion/google-fonts/Fredoka";
+import type { Estilo } from "./anim";
 
 const fredoka = loadFont("normal", { weights: ["500", "600", "700"], subsets: ["latin"] });
 
 export const font = fredoka.fontFamily;
+
+// Estilo de la serie: "25d" (volumen, sombras y profundidad) o "plano"
+export const ESTILO: Estilo = "25d";
 
 // Subtítulos de los diálogos (la letra de la canción se muestra siempre)
 export const SUBTITULOS = true;

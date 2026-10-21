@@ -16,6 +16,7 @@ export const Obj: React.FC<{
   children: React.ReactNode;
 }> = ({ x, y, size, scale = 1, rotate = 0, opacity = 1, glow = 0, ratio = 1, children }) => {
   const id = useId().replace(/:/g, "");
+  const vol = useEstilo() === "25d";
   return (
     <div
       style={{
@@ -45,7 +46,15 @@ export const Obj: React.FC<{
           <circle cx={50} cy={50} r={50} fill={`url(#glow-${id})`} />
         </svg>
       ) : null}
-      <div style={{ position: "absolute", inset: 0 }}>{children}</div>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          filter: vol ? `url(#volumen) drop-shadow(0 ${size * 0.04}px ${size * 0.05}px rgba(60,80,50,0.22))` : undefined,
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };

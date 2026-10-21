@@ -16,7 +16,8 @@ graphics hechos en Remotion, sobre curiosidades científicas verificadas.
 2. Abrir un "loop" (pregunta o promesa) en el hook y resolverlo recién 
    al final del video — así nadie se va a mitad.
 3. Cambiar algo visual (texto, forma, color, corte de cámara) cada 
-   2-3 segundos para sostener la atención.
+   1.5-2 segundos para sostener la atención. Ningún segundo sin algo 
+   nuevo en pantalla.
 4. En cuanto se cumple la promesa del hook, el video termina. Nunca 
    rellenar con paja después de entregar el dato.
 5. Duración objetivo: 20-35 segundos. Denso y directo, no largo.
@@ -24,6 +25,25 @@ graphics hechos en Remotion, sobre curiosidades científicas verificadas.
    por placa.
 7. Dejar zonas seguras sin texto en los bordes superior e inferior 
    (las tapan los controles de Instagram/TikTok al reproducir).
+
+## ILUSTRAR CADA FRASE (que la atención no se distraiga ni un segundo)
+- Cada frase de la voz tiene su propia imagen que muestra exactamente 
+  lo que se dice, y aparece justo cuando la voz lo nombra (usar los 
+  tiempos por palabra de la voz en off).
+- Nunca repetir el mismo plano en placas seguidas: variar el escenario 
+  (microscopio, fondo marino, diagrama, vista macro, siluetas) y el 
+  movimiento de cámara (acercar, seguir, girar, paneo).
+- Los verbos y acciones se demuestran gráficamente, de forma sutil y 
+  coherente con la narración (ej: "envejecer" → reloj y siluetas que 
+  se apagan; "lastimarse" → grieta).
+- Cada micro-acción en pantalla lleva un efecto de sonido sutil 
+  sincronizado (bloop, tic, crack, latido), sin saturar.
+
+## SUBTÍTULOS
+- Idénticos a lo que dice la voz, palabra por palabra, estilo karaoke 
+  (se ilumina la palabra que se está diciendo).
+- Bloques de máximo 8 palabras, en una franja fija dentro de la zona 
+  segura. Las palabras clave grandes van aparte, junto a la imagen.
 
 ## ESTILO VISUAL Y SONIDO
 - Fondo oscuro, tipografía grande y bold, acentos de color.

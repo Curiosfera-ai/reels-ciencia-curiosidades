@@ -27,7 +27,7 @@
   { "id": "14-beto", "speaker": "beto", "text": "¡Amarillo, amarillo!", "pauseBefore": 0.4 },
   { "id": "15-pregunta", "speaker": "pino", "text": "¿Y ustedes? ¿De qué color es el sol?", "at": 140.8 },
   { "id": "15-respuesta", "speaker": "pino", "text": "¡Amarillo! ¡Muy bien!", "pauseBefore": 3 },
-  { "id": "16-nube", "speaker": "nube", "text": "El girasol… y la mariposa… también son amarillos.", "at": 152.3 },
+  { "id": "16-nube", "speaker": "nube", "text": "El girasol… y la mariposa… también son amarillos.", "at": 151.9 },
   { "id": "16-pino", "speaker": "pino", "text": "Amarillo, amarillo, amarillo. ¡Qué lindo color!", "pauseBefore": 0.3 },
   { "id": "17-pino", "speaker": "pino", "text": "Hoy aprendimos tres colores. ¿Se acuerdan?", "at": 163 },
   { "id": "18-manzana", "speaker": "pino", "text": "La manzana es…", "at": 172.8 },

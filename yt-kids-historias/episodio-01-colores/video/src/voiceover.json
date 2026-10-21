@@ -1,1 +1,1278 @@
-[]
+[
+  {
+    "id": "01-titulo",
+    "duration": 4.04,
+    "words": [
+      {
+        "text": "Las",
+        "start": 0,
+        "end": 0.209
+      },
+      {
+        "text": "Tardes",
+        "start": 0.267,
+        "end": 0.557
+      },
+      {
+        "text": "de",
+        "start": 0.58,
+        "end": 0.627
+      },
+      {
+        "text": "Pino.",
+        "start": 0.673,
+        "end": 1.207
+      },
+      {
+        "text": "Hoy:",
+        "start": 1.509,
+        "end": 2.067
+      },
+      {
+        "text": "¡Pino",
+        "start": 2.299,
+        "end": 2.67
+      },
+      {
+        "text": "aprende",
+        "start": 2.694,
+        "end": 2.972
+      },
+      {
+        "text": "los",
+        "start": 3.007,
+        "end": 3.111
+      },
+      {
+        "text": "colores!",
+        "start": 3.158,
+        "end": 4.04
+      }
+    ]
+  },
+  {
+    "id": "02-hola",
+    "duration": 1.672,
+    "words": [
+      {
+        "text": "¡Hola,",
+        "start": 0,
+        "end": 0.267
+      },
+      {
+        "text": "amigos!",
+        "start": 0.29,
+        "end": 0.592
+      },
+      {
+        "text": "Soy",
+        "start": 0.824,
+        "end": 0.94
+      },
+      {
+        "text": "Pino.",
+        "start": 0.987,
+        "end": 1.672
+      }
+    ]
+  },
+  {
+    "id": "02-dia",
+    "duration": 2.043,
+    "words": [
+      {
+        "text": "¡Qué",
+        "start": 0,
+        "end": 0.139
+      },
+      {
+        "text": "lindo",
+        "start": 0.186,
+        "end": 0.406
+      },
+      {
+        "text": "día",
+        "start": 0.453,
+        "end": 0.65
+      },
+      {
+        "text": "en",
+        "start": 0.685,
+        "end": 0.743
+      },
+      {
+        "text": "el",
+        "start": 0.801,
+        "end": 0.859
+      },
+      {
+        "text": "Bosque",
+        "start": 0.906,
+        "end": 1.173
+      },
+      {
+        "text": "Redondo!",
+        "start": 1.219,
+        "end": 2.043
+      }
+    ]
+  },
+  {
+    "id": "03-tema",
+    "duration": 1.95,
+    "words": [
+      {
+        "text": "Hoy",
+        "start": 0,
+        "end": 0.139
+      },
+      {
+        "text": "vamos",
+        "start": 0.186,
+        "end": 0.383
+      },
+      {
+        "text": "a",
+        "start": 0.43,
+        "end": 0.453
+      },
+      {
+        "text": "aprender",
+        "start": 0.511,
+        "end": 0.848
+      },
+      {
+        "text": "los",
+        "start": 0.894,
+        "end": 1.01
+      },
+      {
+        "text": "colores.",
+        "start": 1.068,
+        "end": 1.95
+      }
+    ]
+  },
+  {
+    "id": "03-tres",
+    "duration": 2.926,
+    "words": [
+      {
+        "text": "Tres",
+        "start": 0,
+        "end": 0.279
+      },
+      {
+        "text": "colores:",
+        "start": 0.325,
+        "end": 0.929
+      },
+      {
+        "text": "rojo,",
+        "start": 1.161,
+        "end": 1.637
+      },
+      {
+        "text": "azul",
+        "start": 1.695,
+        "end": 2.02
+      },
+      {
+        "text": "y",
+        "start": 2.055,
+        "end": 2.078
+      },
+      {
+        "text": "amarillo.",
+        "start": 2.101,
+        "end": 2.926
+      }
+    ]
+  },
+  {
+    "id": "04-vamos",
+    "duration": 2.647,
+    "words": [
+      {
+        "text": "¿Me",
+        "start": 0,
+        "end": 0.139
+      },
+      {
+        "text": "acompañan?",
+        "start": 0.163,
+        "end": 0.871
+      },
+      {
+        "text": "¡Vamos",
+        "start": 0.964,
+        "end": 1.324
+      },
+      {
+        "text": "a",
+        "start": 1.37,
+        "end": 1.393
+      },
+      {
+        "text": "buscar",
+        "start": 1.428,
+        "end": 1.683
+      },
+      {
+        "text": "colores!",
+        "start": 1.741,
+        "end": 2.647
+      }
+    ]
+  },
+  {
+    "id": "05-nube",
+    "duration": 3.901,
+    "words": [
+      {
+        "text": "Hola,",
+        "start": 0,
+        "end": 0.395
+      },
+      {
+        "text": "Pino…",
+        "start": 0.441,
+        "end": 0.998
+      },
+      {
+        "text": "mira",
+        "start": 1.277,
+        "end": 1.544
+      },
+      {
+        "text": "arriba…",
+        "start": 1.579,
+        "end": 2.206
+      },
+      {
+        "text": "¿ves",
+        "start": 2.403,
+        "end": 2.694
+      },
+      {
+        "text": "la",
+        "start": 2.752,
+        "end": 2.833
+      },
+      {
+        "text": "manzana?",
+        "start": 2.891,
+        "end": 3.901
+      }
+    ]
+  },
+  {
+    "id": "05-pino",
+    "duration": 2.229,
+    "words": [
+      {
+        "text": "¡Hola,",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "Nube!",
+        "start": 0.279,
+        "end": 0.673
+      },
+      {
+        "text": "¡Sí,",
+        "start": 0.778,
+        "end": 1.231
+      },
+      {
+        "text": "una",
+        "start": 1.289,
+        "end": 1.416
+      },
+      {
+        "text": "manzana!",
+        "start": 1.451,
+        "end": 2.229
+      }
+    ]
+  },
+  {
+    "id": "06-nube",
+    "duration": 2.043,
+    "words": [
+      {
+        "text": "La",
+        "start": 0,
+        "end": 0.186
+      },
+      {
+        "text": "manzana",
+        "start": 0.244,
+        "end": 0.743
+      },
+      {
+        "text": "es",
+        "start": 0.824,
+        "end": 0.94
+      },
+      {
+        "text": "roja.",
+        "start": 1.091,
+        "end": 2.043
+      }
+    ]
+  },
+  {
+    "id": "06-pino",
+    "duration": 1.858,
+    "words": [
+      {
+        "text": "¡Rojo!",
+        "start": 0,
+        "end": 0.499
+      },
+      {
+        "text": "La",
+        "start": 0.592,
+        "end": 0.673
+      },
+      {
+        "text": "manzana",
+        "start": 0.72,
+        "end": 1.022
+      },
+      {
+        "text": "es",
+        "start": 1.057,
+        "end": 1.115
+      },
+      {
+        "text": "roja.",
+        "start": 1.149,
+        "end": 1.858
+      }
+    ]
+  },
+  {
+    "id": "07-pregunta",
+    "duration": 2.461,
+    "words": [
+      {
+        "text": "¿Y",
+        "start": 0,
+        "end": 0.093
+      },
+      {
+        "text": "ustedes?",
+        "start": 0.139,
+        "end": 0.708
+      },
+      {
+        "text": "¿De",
+        "start": 0.894,
+        "end": 1.103
+      },
+      {
+        "text": "qué",
+        "start": 1.149,
+        "end": 1.219
+      },
+      {
+        "text": "color",
+        "start": 1.265,
+        "end": 1.463
+      },
+      {
+        "text": "es",
+        "start": 1.509,
+        "end": 1.556
+      },
+      {
+        "text": "la",
+        "start": 1.602,
+        "end": 1.649
+      },
+      {
+        "text": "manzana?",
+        "start": 1.695,
+        "end": 2.461
+      }
+    ]
+  },
+  {
+    "id": "07-respuesta",
+    "duration": 1.579,
+    "words": [
+      {
+        "text": "¡Rojo!",
+        "start": 0,
+        "end": 0.557
+      },
+      {
+        "text": "¡Muy",
+        "start": 0.65,
+        "end": 0.906
+      },
+      {
+        "text": "bien!",
+        "start": 0.94,
+        "end": 1.579
+      }
+    ]
+  },
+  {
+    "id": "08-nube",
+    "duration": 4.876,
+    "words": [
+      {
+        "text": "También",
+        "start": 0,
+        "end": 0.522
+      },
+      {
+        "text": "son",
+        "start": 0.58,
+        "end": 0.766
+      },
+      {
+        "text": "rojos…",
+        "start": 0.859,
+        "end": 1.66
+      },
+      {
+        "text": "el",
+        "start": 1.985,
+        "end": 2.194
+      },
+      {
+        "text": "hongo…",
+        "start": 2.276,
+        "end": 3.019
+      },
+      {
+        "text": "y",
+        "start": 3.297,
+        "end": 3.402
+      },
+      {
+        "text": "la",
+        "start": 3.506,
+        "end": 3.599
+      },
+      {
+        "text": "frutilla.",
+        "start": 3.68,
+        "end": 4.876
+      }
+    ]
+  },
+  {
+    "id": "08-pino",
+    "duration": 2.601,
+    "words": [
+      {
+        "text": "Rojo,",
+        "start": 0,
+        "end": 0.488
+      },
+      {
+        "text": "rojo,",
+        "start": 0.569,
+        "end": 0.894
+      },
+      {
+        "text": "rojo.",
+        "start": 0.94,
+        "end": 1.347
+      },
+      {
+        "text": "¡Qué",
+        "start": 1.37,
+        "end": 1.544
+      },
+      {
+        "text": "lindo",
+        "start": 1.591,
+        "end": 1.811
+      },
+      {
+        "text": "color!",
+        "start": 1.858,
+        "end": 2.601
+      }
+    ]
+  },
+  {
+    "id": "09-beto",
+    "duration": 2.74,
+    "words": [
+      {
+        "text": "¡Tirirí!",
+        "start": 0,
+        "end": 0.546
+      },
+      {
+        "text": "¡Hola,",
+        "start": 0.604,
+        "end": 0.906
+      },
+      {
+        "text": "Pino!",
+        "start": 0.929,
+        "end": 1.277
+      },
+      {
+        "text": "¡Miren",
+        "start": 1.3,
+        "end": 1.509
+      },
+      {
+        "text": "arriba!",
+        "start": 1.567,
+        "end": 1.927
+      },
+      {
+        "text": "¡El",
+        "start": 1.95,
+        "end": 2.067
+      },
+      {
+        "text": "cielo!",
+        "start": 2.125,
+        "end": 2.74
+      }
+    ]
+  },
+  {
+    "id": "09-pino",
+    "duration": 1.161,
+    "words": [
+      {
+        "text": "¡Hola,",
+        "start": 0,
+        "end": 0.325
+      },
+      {
+        "text": "Beto!",
+        "start": 0.348,
+        "end": 1.161
+      }
+    ]
+  },
+  {
+    "id": "10-pino",
+    "duration": 1.254,
+    "words": [
+      {
+        "text": "El",
+        "start": 0,
+        "end": 0.163
+      },
+      {
+        "text": "cielo",
+        "start": 0.197,
+        "end": 0.406
+      },
+      {
+        "text": "es",
+        "start": 0.43,
+        "end": 0.476
+      },
+      {
+        "text": "azul.",
+        "start": 0.557,
+        "end": 1.254
+      }
+    ]
+  },
+  {
+    "id": "10-beto",
+    "duration": 1.44,
+    "words": [
+      {
+        "text": "¡Azul!",
+        "start": 0,
+        "end": 0.29
+      },
+      {
+        "text": "Azul",
+        "start": 0.36,
+        "end": 0.58
+      },
+      {
+        "text": "como",
+        "start": 0.615,
+        "end": 0.755
+      },
+      {
+        "text": "el",
+        "start": 0.778,
+        "end": 0.836
+      },
+      {
+        "text": "cielo.",
+        "start": 0.871,
+        "end": 1.44
+      }
+    ]
+  },
+  {
+    "id": "11-pregunta",
+    "duration": 2.647,
+    "words": [
+      {
+        "text": "¿Y",
+        "start": 0,
+        "end": 0.104
+      },
+      {
+        "text": "ustedes?",
+        "start": 0.151,
+        "end": 0.882
+      },
+      {
+        "text": "¿De",
+        "start": 1.068,
+        "end": 1.277
+      },
+      {
+        "text": "qué",
+        "start": 1.324,
+        "end": 1.393
+      },
+      {
+        "text": "color",
+        "start": 1.44,
+        "end": 1.66
+      },
+      {
+        "text": "es",
+        "start": 1.695,
+        "end": 1.753
+      },
+      {
+        "text": "el",
+        "start": 1.811,
+        "end": 1.881
+      },
+      {
+        "text": "cielo?",
+        "start": 1.916,
+        "end": 2.647
+      }
+    ]
+  },
+  {
+    "id": "11-respuesta",
+    "duration": 1.625,
+    "words": [
+      {
+        "text": "¡Azul!",
+        "start": 0,
+        "end": 0.546
+      },
+      {
+        "text": "¡Muy",
+        "start": 0.639,
+        "end": 0.964
+      },
+      {
+        "text": "bien!",
+        "start": 0.998,
+        "end": 1.625
+      }
+    ]
+  },
+  {
+    "id": "12-beto",
+    "duration": 2.229,
+    "words": [
+      {
+        "text": "La",
+        "start": 0,
+        "end": 0.128
+      },
+      {
+        "text": "laguna",
+        "start": 0.174,
+        "end": 0.522
+      },
+      {
+        "text": "es",
+        "start": 0.557,
+        "end": 0.627
+      },
+      {
+        "text": "azul.",
+        "start": 0.685,
+        "end": 1.08
+      },
+      {
+        "text": "¡Y",
+        "start": 1.126,
+        "end": 1.289
+      },
+      {
+        "text": "las",
+        "start": 1.393,
+        "end": 1.521
+      },
+      {
+        "text": "flores!",
+        "start": 1.567,
+        "end": 2.229
+      }
+    ]
+  },
+  {
+    "id": "12-pino",
+    "duration": 2.833,
+    "words": [
+      {
+        "text": "Azul,",
+        "start": 0,
+        "end": 0.534
+      },
+      {
+        "text": "azul,",
+        "start": 0.569,
+        "end": 0.975
+      },
+      {
+        "text": "azul.",
+        "start": 0.998,
+        "end": 1.474
+      },
+      {
+        "text": "¡Qué",
+        "start": 1.498,
+        "end": 1.753
+      },
+      {
+        "text": "lindo",
+        "start": 1.834,
+        "end": 2.078
+      },
+      {
+        "text": "color!",
+        "start": 2.125,
+        "end": 2.833
+      }
+    ]
+  },
+  {
+    "id": "13-nube",
+    "duration": 2.183,
+    "words": [
+      {
+        "text": "Y",
+        "start": 0,
+        "end": 0.128
+      },
+      {
+        "text": "miren",
+        "start": 0.221,
+        "end": 0.557
+      },
+      {
+        "text": "el",
+        "start": 0.65,
+        "end": 0.743
+      },
+      {
+        "text": "sol,",
+        "start": 0.824,
+        "end": 1.138
+      },
+      {
+        "text": "amigos…",
+        "start": 1.173,
+        "end": 2.183
+      }
+    ]
+  },
+  {
+    "id": "13-pino",
+    "duration": 1.115,
+    "words": [
+      {
+        "text": "¡Qué",
+        "start": 0,
+        "end": 0.163
+      },
+      {
+        "text": "lindo",
+        "start": 0.209,
+        "end": 0.441
+      },
+      {
+        "text": "sol!",
+        "start": 0.488,
+        "end": 1.115
+      }
+    ]
+  },
+  {
+    "id": "14-pino",
+    "duration": 1.44,
+    "words": [
+      {
+        "text": "¡El",
+        "start": 0,
+        "end": 0.244
+      },
+      {
+        "text": "sol",
+        "start": 0.325,
+        "end": 0.453
+      },
+      {
+        "text": "es",
+        "start": 0.499,
+        "end": 0.557
+      },
+      {
+        "text": "amarillo!",
+        "start": 0.604,
+        "end": 1.44
+      }
+    ]
+  },
+  {
+    "id": "14-beto",
+    "duration": 1.207,
+    "words": [
+      {
+        "text": "¡Amarillo,",
+        "start": 0,
+        "end": 0.557
+      },
+      {
+        "text": "amarillo!",
+        "start": 0.592,
+        "end": 1.207
+      }
+    ]
+  },
+  {
+    "id": "15-pregunta",
+    "duration": 2.415,
+    "words": [
+      {
+        "text": "¿Y",
+        "start": 0,
+        "end": 0.104
+      },
+      {
+        "text": "ustedes?",
+        "start": 0.139,
+        "end": 0.778
+      },
+      {
+        "text": "¿De",
+        "start": 0.906,
+        "end": 1.161
+      },
+      {
+        "text": "qué",
+        "start": 1.207,
+        "end": 1.277
+      },
+      {
+        "text": "color",
+        "start": 1.324,
+        "end": 1.544
+      },
+      {
+        "text": "es",
+        "start": 1.591,
+        "end": 1.649
+      },
+      {
+        "text": "el",
+        "start": 1.707,
+        "end": 1.776
+      },
+      {
+        "text": "sol?",
+        "start": 1.823,
+        "end": 2.415
+      }
+    ]
+  },
+  {
+    "id": "15-respuesta",
+    "duration": 1.44,
+    "words": [
+      {
+        "text": "¡Amarillo!",
+        "start": 0,
+        "end": 0.546
+      },
+      {
+        "text": "¡Muy",
+        "start": 0.569,
+        "end": 0.731
+      },
+      {
+        "text": "bien!",
+        "start": 0.766,
+        "end": 1.44
+      }
+    ]
+  },
+  {
+    "id": "16-nube",
+    "duration": 5.805,
+    "words": [
+      {
+        "text": "El",
+        "start": 0,
+        "end": 0.197
+      },
+      {
+        "text": "girasol…",
+        "start": 0.279,
+        "end": 1.37
+      },
+      {
+        "text": "y",
+        "start": 1.8,
+        "end": 1.881
+      },
+      {
+        "text": "la",
+        "start": 1.974,
+        "end": 2.067
+      },
+      {
+        "text": "mariposa…",
+        "start": 2.125,
+        "end": 3.251
+      },
+      {
+        "text": "también",
+        "start": 3.68,
+        "end": 4.238
+      },
+      {
+        "text": "son",
+        "start": 4.319,
+        "end": 4.516
+      },
+      {
+        "text": "amarillos.",
+        "start": 4.574,
+        "end": 5.805
+      }
+    ]
+  },
+  {
+    "id": "16-pino",
+    "duration": 3.297,
+    "words": [
+      {
+        "text": "Amarillo,",
+        "start": 0,
+        "end": 0.673
+      },
+      {
+        "text": "amarillo,",
+        "start": 0.697,
+        "end": 1.324
+      },
+      {
+        "text": "amarillo.",
+        "start": 1.347,
+        "end": 2.02
+      },
+      {
+        "text": "¡Qué",
+        "start": 2.055,
+        "end": 2.299
+      },
+      {
+        "text": "lindo",
+        "start": 2.345,
+        "end": 2.543
+      },
+      {
+        "text": "color!",
+        "start": 2.589,
+        "end": 3.297
+      }
+    ]
+  },
+  {
+    "id": "17-pino",
+    "duration": 2.694,
+    "words": [
+      {
+        "text": "Hoy",
+        "start": 0,
+        "end": 0.197
+      },
+      {
+        "text": "aprendimos",
+        "start": 0.232,
+        "end": 0.65
+      },
+      {
+        "text": "tres",
+        "start": 0.697,
+        "end": 0.871
+      },
+      {
+        "text": "colores.",
+        "start": 0.929,
+        "end": 1.533
+      },
+      {
+        "text": "¿Se",
+        "start": 1.695,
+        "end": 1.916
+      },
+      {
+        "text": "acuerdan?",
+        "start": 1.939,
+        "end": 2.694
+      }
+    ]
+  },
+  {
+    "id": "18-manzana",
+    "duration": 1.393,
+    "words": [
+      {
+        "text": "La",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "manzana",
+        "start": 0.29,
+        "end": 0.65
+      },
+      {
+        "text": "es…",
+        "start": 0.743,
+        "end": 1.393
+      }
+    ]
+  },
+  {
+    "id": "18-roja",
+    "duration": 0.789,
+    "words": [
+      {
+        "text": "¡roja!",
+        "start": 0,
+        "end": 0.789
+      }
+    ]
+  },
+  {
+    "id": "18-cielo",
+    "duration": 1.44,
+    "words": [
+      {
+        "text": "El",
+        "start": 0,
+        "end": 0.267
+      },
+      {
+        "text": "cielo",
+        "start": 0.302,
+        "end": 0.557
+      },
+      {
+        "text": "es…",
+        "start": 0.65,
+        "end": 1.44
+      }
+    ]
+  },
+  {
+    "id": "18-azul",
+    "duration": 0.929,
+    "words": [
+      {
+        "text": "¡azul!",
+        "start": 0,
+        "end": 0.929
+      }
+    ]
+  },
+  {
+    "id": "18-sol",
+    "duration": 1.207,
+    "words": [
+      {
+        "text": "El",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "sol",
+        "start": 0.348,
+        "end": 0.522
+      },
+      {
+        "text": "es…",
+        "start": 0.58,
+        "end": 1.207
+      }
+    ]
+  },
+  {
+    "id": "18-amarillo",
+    "duration": 1.068,
+    "words": [
+      {
+        "text": "¡amarillo!",
+        "start": 0,
+        "end": 1.068
+      }
+    ]
+  },
+  {
+    "id": "19-cantar",
+    "duration": 5.016,
+    "words": [
+      {
+        "text": "Rojo,",
+        "start": 0,
+        "end": 0.464
+      },
+      {
+        "text": "azul",
+        "start": 0.488,
+        "end": 0.789
+      },
+      {
+        "text": "y",
+        "start": 0.848,
+        "end": 0.871
+      },
+      {
+        "text": "amarillo.",
+        "start": 0.894,
+        "end": 1.533
+      },
+      {
+        "text": "¡Qué",
+        "start": 1.637,
+        "end": 1.939
+      },
+      {
+        "text": "lindos",
+        "start": 1.974,
+        "end": 2.218
+      },
+      {
+        "text": "colores!",
+        "start": 2.276,
+        "end": 2.891
+      },
+      {
+        "text": "Y",
+        "start": 3.019,
+        "end": 3.077
+      },
+      {
+        "text": "ahora…",
+        "start": 3.135,
+        "end": 3.657
+      },
+      {
+        "text": "¡a",
+        "start": 3.889,
+        "end": 4.133
+      },
+      {
+        "text": "cantar!",
+        "start": 4.191,
+        "end": 5.016
+      }
+    ]
+  },
+  {
+    "id": "23-chau",
+    "duration": 3.111,
+    "words": [
+      {
+        "text": "¡Chau,",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "amigos!",
+        "start": 0.279,
+        "end": 0.766
+      },
+      {
+        "text": "Nos",
+        "start": 0.871,
+        "end": 1.045
+      },
+      {
+        "text": "vemos",
+        "start": 1.068,
+        "end": 1.265
+      },
+      {
+        "text": "en",
+        "start": 1.312,
+        "end": 1.358
+      },
+      {
+        "text": "otra",
+        "start": 1.405,
+        "end": 1.567
+      },
+      {
+        "text": "tarde",
+        "start": 1.614,
+        "end": 1.869
+      },
+      {
+        "text": "del",
+        "start": 1.927,
+        "end": 2.032
+      },
+      {
+        "text": "Bosque",
+        "start": 2.078,
+        "end": 2.299
+      },
+      {
+        "text": "Redondo.",
+        "start": 2.357,
+        "end": 3.111
+      }
+    ]
+  },
+  {
+    "id": "23-nube",
+    "duration": 0.975,
+    "words": [
+      {
+        "text": "Chau…",
+        "start": 0,
+        "end": 0.975
+      }
+    ]
+  },
+  {
+    "id": "23-beto",
+    "duration": 0.789,
+    "words": [
+      {
+        "text": "¡Tirirí!",
+        "start": 0,
+        "end": 0.789
+      }
+    ]
+  }
+]

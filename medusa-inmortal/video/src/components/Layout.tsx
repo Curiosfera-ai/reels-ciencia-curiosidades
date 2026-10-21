@@ -1,6 +1,8 @@
 import type React from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { colors } from "../theme";
+import type { SceneId } from "../voice";
+import { Captions } from "./Captions";
 
 // Fondo oscuro con un halo de color por escena y "nieve marina" que sube lento.
 // `offset` desplaza el tiempo de las partículas (para que el final coincida con el inicio).
@@ -39,20 +41,25 @@ export const Background: React.FC<{ readonly tint: string; readonly offset?: num
   );
 };
 
-// Zona visual arriba (260–880 px) y texto abajo (920–1500 px):
-// deja libres los bordes que tapan los controles de Instagram/TikTok
+// Zonas: imagen (260–900 px), palabra clave (900–1220 px) y subtítulos (1235–1480 px).
+// Deja libres los bordes que tapan los controles de Instagram/TikTok.
 export const Scene: React.FC<{
   readonly tint: string;
   readonly visual: React.ReactNode;
-  readonly children: React.ReactNode;
+  readonly children?: React.ReactNode; // palabra clave grande
+  readonly captions?: SceneId;
+  readonly camera?: React.CSSProperties; // movimiento de cámara sobre la imagen
+  readonly backdrop?: React.ReactNode; // capa entre el fondo y el contenido
+  readonly foreground?: React.ReactNode; // capa por encima de todo
   readonly punch?: boolean; // pequeño zoom de entrada en el corte
   readonly bgOffset?: number;
   readonly textOpacity?: number;
-}> = ({ tint, visual, children, punch = true, bgOffset = 0, textOpacity = 1 }) => {
+}> = ({ tint, visual, children, captions, camera, backdrop, foreground, punch = true, bgOffset = 0, textOpacity = 1 }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
       <Background tint={tint} offset={bgOffset} />
+      {backdrop ? <AbsoluteFill>{backdrop}</AbsoluteFill> : null}
       <AbsoluteFill
         style={{
           scale: punch
@@ -70,10 +77,11 @@ export const Scene: React.FC<{
             top: 260,
             left: 0,
             right: 0,
-            height: 620,
+            height: 640,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            ...camera,
           }}
         >
           {visual}
@@ -81,22 +89,28 @@ export const Scene: React.FC<{
         <div
           style={{
             position: "absolute",
-            top: 920,
+            top: 900,
             left: 80,
             right: 80,
-            height: 580,
+            height: 320,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            gap: 18,
+            gap: 14,
             textAlign: "center",
             opacity: textOpacity,
           }}
         >
           {children}
         </div>
+        {captions ? (
+          <div style={{ position: "absolute", top: 1235, left: 70, right: 70, height: 245, opacity: textOpacity }}>
+            <Captions id={captions} />
+          </div>
+        ) : null}
       </AbsoluteFill>
+      {foreground ? <AbsoluteFill style={{ pointerEvents: "none" }}>{foreground}</AbsoluteFill> : null}
     </AbsoluteFill>
   );
 };

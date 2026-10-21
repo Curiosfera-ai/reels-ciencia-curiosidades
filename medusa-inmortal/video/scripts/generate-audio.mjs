@@ -236,7 +236,117 @@ const swell = () => {
   });
 };
 
+// --- Micro-efectos v3 ----------------------------------------------------
+
+// Gota de agua: el tono sube rápido y se apaga (una por célula que cambia)
+const bloop = (f0) => {
+  let phase = 0;
+  return buffer(0.16).map((_, i) => {
+    const t = i / SR;
+    const f = f0 * (1 + 1.2 * (1 - Math.exp(-t / 0.025)));
+    phase += (2 * Math.PI * f) / SR;
+    return Math.sin(phase) * Math.exp(-t / 0.035) * Math.min(1, t / 0.003);
+  });
+};
+
+// Tic-tac rápido de reloj (envejecer)
+const clock = () => {
+  const data = buffer(1.3);
+  for (let k = 0; k * 0.11 < 1.2; k++) tick(data, k * 0.11, k % 2 ? 1500 : 2100, 0.7 - k * 0.03);
+  return data;
+};
+
+// Grieta: dos chasquidos de ruido brillante muy cortos (lastimarse)
+const crack = () => {
+  const raw = buffer(0.25).map((_, i) => {
+    const t = i / SR;
+    return noise() * (Math.exp(-t / 0.012) + 0.6 * Math.exp(-Math.max(0, t - 0.035) / 0.02) * (t > 0.035 ? 1 : 0));
+  });
+  return bandpass(raw, () => 2600, 1.2);
+};
+
+// Latido grave "lub-dub"
+const beat = (data, start, amp) => {
+  for (const [off, a] of [[0, 1], [0.16, 0.7]]) {
+    const s = Math.round((start + off) * SR);
+    let phase = 0;
+    for (let i = 0; i < 0.18 * SR && s + i < data.length; i++) {
+      const t = i / SR;
+      phase += (2 * Math.PI * (48 + 40 * Math.exp(-t / 0.03))) / SR;
+      data[s + i] += Math.sin(phase) * Math.exp(-t / 0.06) * amp * a;
+    }
+  }
+};
+
+// Latidos que se espacian y se apagan (el principio del fin)
+const heartbeatFade = () => {
+  const data = buffer(2.8);
+  [[0, 1], [0.75, 0.65], [1.65, 0.35], [2.5, 0.15]].forEach(([t, a]) => beat(data, t, a));
+  return data;
+};
+
+// El corazón vuelve: dos latidos que crecen
+const heartbeatReturn = () => {
+  const data = buffer(1);
+  [[0, 0.55], [0.45, 1]].forEach(([t, a]) => beat(data, t, a));
+  return data;
+};
+
+// Burbujas que suben (se hunde)
+const bubbles = () => {
+  const data = buffer(1.6);
+  [0, 0.12, 0.3, 0.38, 0.6, 0.8, 0.95, 1.2].forEach((start, k) => {
+    const s = Math.round(start * SR);
+    let phase = 0;
+    for (let i = 0; i < 0.06 * SR && s + i < data.length; i++) {
+      const t = i / SR;
+      phase += (2 * Math.PI * (380 + k * 40 + 900 * (t / 0.06))) / SR;
+      data[s + i] += Math.sin(phase) * Math.sin((Math.PI * t) / 0.06) * (0.4 + (k % 3) * 0.2);
+    }
+  });
+  return data;
+};
+
+// Rebobinado de cinta: tono que baja con trémolo rápido
+const rewind = () => {
+  let phase = 0;
+  const dur = 0.9;
+  return buffer(dur).map((_, i) => {
+    const t = i / SR;
+    const f = 1100 - 800 * (t / dur);
+    phase += (2 * Math.PI * f) / SR;
+    const saw = 2 * ((phase / (2 * Math.PI)) % 1) - 1;
+    const trem = 0.6 + 0.4 * Math.sin(2 * Math.PI * 28 * t);
+    return (saw * 0.5 + noise() * 0.15) * trem * Math.sin((Math.PI * t) / dur);
+  });
+};
+
+// Brillo suave (genéticamente idénticas)
+const chime = () =>
+  buffer(1.4).map((_, i) => {
+    const t = i / SR;
+    let v = 0;
+    [1318.5, 1975.5, 2637].forEach((f, k) => (v += Math.sin(2 * Math.PI * f * t) * Math.exp(-t / (0.5 - k * 0.1)) / (1 + k)));
+    return v * Math.min(1, t / 0.01);
+  });
+
+// Whoosh grave y largo (la sombra del pez)
+const whooshLow = () => {
+  const dur = 0.9;
+  const swept = bandpass(buffer(dur).map(() => noise()), (t) => 120 + 600 * (t / dur), 1.8);
+  return swept.map((v, i) => v * Math.sin((Math.PI * i) / swept.length) ** 2);
+};
+
 console.log("Generando audio en public/audio/");
+[300, 360, 420, 500].forEach((f, k) => writeWav(`bloop-${k + 1}`, bloop(f), 0.7));
+writeWav("clock", clock());
+writeWav("crack", crack());
+writeWav("heartbeat-fade", heartbeatFade());
+writeWav("heartbeat-return", heartbeatReturn());
+writeWav("bubbles", bubbles());
+writeWav("rewind", rewind());
+writeWav("chime", chime());
+writeWav("whoosh-low", whooshLow());
 writeWav("whoosh", whoosh(false));
 writeWav("whoosh-reverse", whoosh(true));
 writeWav("pop", pop());

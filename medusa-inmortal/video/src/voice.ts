@@ -44,6 +44,42 @@ export const timeline = (fps: number): Record<SceneId, Slot> => {
 
 export const totalFrames = (fps: number) => Object.values(timeline(fps)).reduce((sum, s) => sum + s.dur, 0);
 
+// --- Subtítulos ---------------------------------------------------------
+
+// Palabras escritas "como suenan" para la voz, que en pantalla van bien escritas
+const DISPLAY: Record<string, string> = { "dórnii…": "dohrnii…" };
+
+export type TimedWord = { readonly text: string; readonly start: number; readonly end: number };
+
+// Divide la frase en bloques de hasta 8 palabras, cortando en la puntuación
+export const captionChunks = (id: SceneId, fps: number): TimedWord[][] => {
+  const index = clips.findIndex((c) => c.id === id);
+  const lead = index === 0 ? 0 : LEAD;
+  const words: TimedWord[] = clips[index].words.map((w) => ({
+    text: DISPLAY[w.text] ?? w.text,
+    start: lead + Math.round(w.start * fps),
+    end: lead + Math.round(w.end * fps),
+  }));
+  const groups: TimedWord[][] = [];
+  let current: TimedWord[] = [];
+  words.forEach((w, i) => {
+    current.push(w);
+    const rest = words.length - 1 - i;
+    if (/[,.:;…]$/.test(w.text) && current.length >= 3 && rest >= 2) {
+      groups.push(current);
+      current = [];
+    }
+  });
+  if (current.length) groups.push(current);
+  return groups.flatMap((g) => {
+    if (g.length <= 8) return [g];
+    const size = Math.ceil(g.length / Math.ceil(g.length / 8));
+    const parts: TimedWord[][] = [];
+    for (let i = 0; i < g.length; i += size) parts.push(g.slice(i, i + size));
+    return parts;
+  });
+};
+
 // Frame (relativo al inicio de la placa) en que la voz dice una palabra
 export const cue = (id: SceneId, word: string, fps: number, edge: "start" | "end" = "start") => {
   const clip = clips.find((c) => c.id === id);

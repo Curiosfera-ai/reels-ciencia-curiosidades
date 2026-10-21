@@ -1,6 +1,21 @@
 import { Audio } from "@remotion/media";
 import { AbsoluteFill, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { Aging, BackToPolyp, BUD_OFFSETS, Budding, CystScene, Hook, Loop, Name, Sinks, Size, Transdifferentiation } from "./Scenes";
+import {
+  ANIMAL_POP,
+  Aging,
+  BackToPolyp,
+  BUD_OFFSETS,
+  Budding,
+  cellTiming,
+  CystScene,
+  FOCUS_FRAME,
+  Hook,
+  Loop,
+  Name,
+  Sinks,
+  Size,
+  Transdifferentiation,
+} from "./Scenes";
 import { cue, timeline } from "./voice";
 
 // Los whoosh tienen el pico a los 0.23 s: arrancan 7 frames antes del corte.
@@ -10,6 +25,7 @@ export const MedusaInmortal: React.FC = () => {
   const { fps, durationInFrames } = useVideoConfig();
   const t = timeline(fps);
   const end = t["10-cierre"].from + t["10-cierre"].speechEnd; // fin de la última frase
+  const cells = cellTiming(fps);
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#05060B" }}>
@@ -67,18 +83,42 @@ export const MedusaInmortal: React.FC = () => {
       <Audio name="Golpe INMORTAL" src={staticFile("audio/boom.wav")} from={t["01-hook"].from + cue("01-hook", "inmortal", fps)} volume={0.7} />
       <Audio name="Pop pregunta" src={staticFile("audio/pop.wav")} from={t["01-hook"].dur - 16} volume={0.5} />
       <Audio name="Whoosh nombre" src={staticFile("audio/whoosh.wav")} from={t["02-nombre"].from - 7} volume={0.45} />
+      <Audio name="Click enfoque microscopio" src={staticFile("audio/click.wav")} from={t["02-nombre"].from + FOCUS_FRAME} volume={0.5} />
       <Audio name="Pop tamaño" src={staticFile("audio/pop.wav")} from={t["03-tamano"].from} volume={0.5} />
       <Audio name="Ticks contador" src={staticFile("audio/ticks.wav")} from={t["03-tamano"].from + cue("03-tamano", "cuatro", fps)} volume={0.3} />
       <Audio name="Whoosh envejece" src={staticFile("audio/whoosh.wav")} from={t["04-envejece"].from - 7} volume={0.45} />
-      <Audio name="Click no muere" src={staticFile("audio/click.wav")} from={t["05-no-muere"].from} volume={0.5} />
+      <Audio name="Pop pez" src={staticFile("audio/pop.wav")} from={t["04-envejece"].from + ANIMAL_POP[0]} volume={0.3} />
+      <Audio name="Pop ave" src={staticFile("audio/pop.wav")} from={t["04-envejece"].from + ANIMAL_POP[1]} volume={0.3} />
+      <Audio name="Pop perro" src={staticFile("audio/pop.wav")} from={t["04-envejece"].from + ANIMAL_POP[2]} volume={0.3} />
+      <Audio name="Pop persona" src={staticFile("audio/pop.wav")} from={t["04-envejece"].from + ANIMAL_POP[3]} volume={0.3} />
+      <Audio name="Reloj envejecer" src={staticFile("audio/clock.wav")} from={t["04-envejece"].from + cue("04-envejece", "envejecer", fps)} volume={0.35} />
+      <Audio name="Grieta lastimarse" src={staticFile("audio/crack.wav")} from={t["04-envejece"].from + cue("04-envejece", "lastimarse", fps)} volume={0.45} />
+      <Audio name="Latido que se apaga" src={staticFile("audio/heartbeat-fade.wav")} from={t["04-envejece"].from + cue("04-envejece", "principio", fps)} volume={0.7} />
+      <Audio name="Latido que vuelve" src={staticFile("audio/heartbeat-return.wav")} from={t["05-no-muere"].from + cue("05-no-muere", "distinto", fps)} volume={0.7} />
+      <Audio name="Sello FIN" src={staticFile("audio/click.wav")} from={t["05-no-muere"].from + cue("05-no-muere", "lugar", fps)} volume={0.55} />
+      <Audio name="Tachado FIN" src={staticFile("audio/whoosh.wav")} from={t["05-no-muere"].from + cue("05-no-muere", "morir", fps, "end") - 4} volume={0.3} />
+      <Audio name="Burbujas" src={staticFile("audio/bubbles.wav")} from={t["05-no-muere"].from + cue("05-no-muere", "hunde", fps)} volume={0.35} />
       <Audio name="Pop quiste" src={staticFile("audio/pop.wav")} from={t["06-quiste"].from + cue("06-quiste", "reduce", fps)} volume={0.5} />
       <Audio name="Click células" src={staticFile("audio/click.wav")} from={t["07-clave"].from} volume={0.5} />
-      <Audio name="Sting clímax" src={staticFile("audio/sting.wav")} from={t["07-clave"].from + cue("07-clave", "transdiferenciacion", fps)} volume={0.6} />
+      {/* Un bloop sutil cada dos células que cambian de forma */}
+      {[0, 2, 4, 6, 8, 10, 12].map((k) => (
+        <Audio
+          key={k}
+          name={`Bloop célula ${k + 1}`}
+          src={staticFile(`audio/bloop-${(k / 2) % 4 + 1}.wav`)}
+          from={t["07-clave"].from + cells.start + k * cells.stagger}
+          volume={0.22}
+        />
+      ))}
+      <Audio name="Sting clímax" src={staticFile("audio/sting.wav")} from={t["07-clave"].from + cells.climax} volume={0.6} />
       <Audio name="Whoosh invertido pólipo" src={staticFile("audio/whoosh-reverse.wav")} from={t["08-polipo"].from - 15} volume={0.45} />
+      <Audio name="Rebobinado" src={staticFile("audio/rewind.wav")} from={t["08-polipo"].from + cue("08-polipo", "vuelve", fps)} volume={0.25} />
       <Audio name="Pop brote 1" src={staticFile("audio/pop.wav")} from={t["09-brotes"].from + cue("09-brotes", "brotan", fps) + BUD_OFFSETS[0]} volume={0.4} />
       <Audio name="Pop brote 2" src={staticFile("audio/pop.wav")} from={t["09-brotes"].from + cue("09-brotes", "brotan", fps) + BUD_OFFSETS[1]} volume={0.4} />
       <Audio name="Pop brote 3" src={staticFile("audio/pop.wav")} from={t["09-brotes"].from + cue("09-brotes", "brotan", fps) + BUD_OFFSETS[2]} volume={0.4} />
+      <Audio name="Brillo idénticas" src={staticFile("audio/chime.wav")} from={t["09-brotes"].from + cue("09-brotes", "geneticamente", fps)} volume={0.3} />
       <Audio name="Whoosh cierre" src={staticFile("audio/whoosh.wav")} from={t["10-cierre"].from - 7} volume={0.45} />
+      <Audio name="Sombra del pez" src={staticFile("audio/whoosh-low.wav")} from={t["10-cierre"].from + cue("10-cierre", "nada", fps) - 8} volume={0.5} />
       <Audio
         name="Swell final"
         src={staticFile("audio/swell.wav")}

@@ -1,11 +1,13 @@
-// Genera la música y los efectos de sonido del reel con síntesis programática.
-// Uso: node scripts/generate-audio.mjs  →  escribe WAVs en public/audio/
+// Genera la música y los efectos de sonido de un video con síntesis programática.
+// Compartido por todos los nichos del repo.
+// Uso: node shared/scripts/generate-audio.mjs <carpeta-del-proyecto-remotion>
+//   →  escribe WAVs en <carpeta>/public/audio/   (sin argumento: la carpeta actual)
+// Ej.: desde curiosidades-ciencia/medusa-inmortal/video →  npm run audio
 import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join, resolve } from "node:path";
 
 const SR = 44100;
-const OUT = join(dirname(fileURLToPath(import.meta.url)), "..", "public", "audio");
+const OUT = join(resolve(process.argv[2] ?? process.cwd()), "public", "audio");
 mkdirSync(OUT, { recursive: true });
 
 // Ruido determinista para que cada render suene igual

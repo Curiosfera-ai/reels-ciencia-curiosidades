@@ -26,6 +26,7 @@
   },
   "scripts": {
     "dev": "remotion studio",
+    "audio": "node ../../../shared/scripts/generate-audio.mjs .",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"

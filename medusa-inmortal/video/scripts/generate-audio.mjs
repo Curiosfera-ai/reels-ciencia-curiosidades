@@ -159,7 +159,8 @@ const sting = () => {
 // --- Música --------------------------------------------------------------
 
 const music = () => {
-  const dur = 25;
+  // Más larga que el video: el fundido de salida lo hace Remotion según la duración real
+  const dur = 50;
   const bpm = 100;
   const beat = 60 / bpm;
   const data = buffer(dur);
@@ -217,12 +218,21 @@ const music = () => {
     }
   }
 
-  // Fundido final: silencio desde los 23.6 s para que el golpe final quede solo
   return data.map((_, i) => {
+    const fadeIn = Math.min(1, i / SR / 0.3);
+    return (padSoft[i] * 0.16 + pluck[i] * 0.22 + pulse[i] * 0.5) * fadeIn;
+  });
+};
+
+// Cierre suave: acorde grave que crece despacio y se apaga, en vez de un golpe
+const swell = () => {
+  const dur = 3;
+  return buffer(dur).map((_, i) => {
     const t = i / SR;
-    const fadeIn = Math.min(1, t / 0.3);
-    const fadeOut = Math.max(0, Math.min(1, (23.6 - t) / 0.8));
-    return (padSoft[i] * 0.16 + pluck[i] * 0.22 + pulse[i] * 0.5) * fadeIn * fadeOut;
+    const env = Math.min(1, t / 0.5) * Math.exp(-Math.max(0, t - 0.5) / 0.8);
+    let v = 0;
+    for (const [f, a] of [[55, 1], [110, 0.6], [164.8, 0.35], [220, 0.2]]) v += Math.sin(2 * Math.PI * f * t) * a;
+    return v * env;
   });
 };
 
@@ -234,4 +244,5 @@ writeWav("click", click());
 writeWav("ticks", ticks());
 writeWav("boom", boom());
 writeWav("sting", sting());
+writeWav("swell", swell());
 writeWav("music", music(), 0.8);

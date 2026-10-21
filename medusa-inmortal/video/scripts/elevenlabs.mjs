@@ -27,16 +27,45 @@ export const api = async (path, init = {}) => {
 };
 
 // Narrador sereno: estabilidad alta y poco "estilo" para que no sobreactúe
+const body = (text, settings) =>
+  JSON.stringify({
+    text,
+    model_id: "eleven_multilingual_v2",
+    language_code: "es",
+    voice_settings: { stability: 0.55, similarity_boost: 0.8, style: 0.15, use_speaker_boost: true, ...settings },
+  });
+
 export const tts = async (voiceId, text, settings = {}) => {
   const res = await api(`/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "audio/mpeg" },
-    body: JSON.stringify({
-      text,
-      model_id: "eleven_multilingual_v2",
-      language_code: "es",
-      voice_settings: { stability: 0.55, similarity_boost: 0.8, style: 0.15, use_speaker_boost: true, ...settings },
-    }),
+    body: body(text, settings),
   });
   return Buffer.from(await res.arrayBuffer());
+};
+
+// Igual que tts(), pero además devuelve cuándo se dice cada palabra (en segundos)
+export const ttsTimed = async (voiceId, text, settings = {}) => {
+  const res = await api(`/v1/text-to-speech/${voiceId}/with-timestamps?output_format=mp3_44100_128`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: body(text, settings),
+  });
+  const json = await res.json();
+  const { characters, character_start_times_seconds: starts, character_end_times_seconds: ends } = json.alignment;
+  const words = [];
+  let current = null;
+  characters.forEach((ch, i) => {
+    if (/\s/.test(ch)) {
+      current = null;
+      return;
+    }
+    if (!current) {
+      current = { text: "", start: starts[i], end: ends[i] };
+      words.push(current);
+    }
+    current.text += ch;
+    current.end = ends[i];
+  });
+  return { audio: Buffer.from(json.audio_base64, "base64"), words };
 };

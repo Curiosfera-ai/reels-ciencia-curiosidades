@@ -2,9 +2,10 @@ import type React from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { colors } from "../theme";
 
-// Fondo oscuro con un halo de color por escena y "nieve marina" que sube lento
-export const Background: React.FC<{ readonly tint: string }> = ({ tint }) => {
-  const frame = useCurrentFrame();
+// Fondo oscuro con un halo de color por escena y "nieve marina" que sube lento.
+// `offset` desplaza el tiempo de las partículas (para que el final coincida con el inicio).
+export const Background: React.FC<{ readonly tint: string; readonly offset?: number }> = ({ tint, offset = 0 }) => {
+  const frame = useCurrentFrame() + offset;
   const { height } = useVideoConfig();
   return (
     <AbsoluteFill style={{ backgroundColor: colors.bg }}>
@@ -44,18 +45,23 @@ export const Scene: React.FC<{
   readonly tint: string;
   readonly visual: React.ReactNode;
   readonly children: React.ReactNode;
-}> = ({ tint, visual, children }) => {
+  readonly punch?: boolean; // pequeño zoom de entrada en el corte
+  readonly bgOffset?: number;
+  readonly textOpacity?: number;
+}> = ({ tint, visual, children, punch = true, bgOffset = 0, textOpacity = 1 }) => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Background tint={tint} />
+      <Background tint={tint} offset={bgOffset} />
       <AbsoluteFill
         style={{
-          scale: interpolate(frame, [0, 8], [1.06, 1], {
-            extrapolateLeft: "clamp",
-            extrapolateRight: "clamp",
-            easing: Easing.bezier(0.16, 1, 0.3, 1),
-          }),
+          scale: punch
+            ? interpolate(frame, [0, 8], [1.06, 1], {
+                extrapolateLeft: "clamp",
+                extrapolateRight: "clamp",
+                easing: Easing.bezier(0.16, 1, 0.3, 1),
+              })
+            : 1,
         }}
       >
         <div
@@ -85,6 +91,7 @@ export const Scene: React.FC<{
             alignItems: "center",
             gap: 18,
             textAlign: "center",
+            opacity: textOpacity,
           }}
         >
           {children}

@@ -17,7 +17,7 @@ export const Medusa: React.FC<{
   const frame = useCurrentFrame();
   const t = frame * pulseSpeed + phase;
   // Contracción rápida y relajación lenta, como el nado real
-  const cycle = (t % 36) / 36;
+  const cycle = (((t % 36) + 36) % 36) / 36;
   const pulse = cycle < 0.3 ? Math.sin((cycle / 0.3) * (Math.PI / 2)) : Math.cos(((cycle - 0.3) / 0.7) * (Math.PI / 2));
   const sx = 1 - 0.09 * pulse;
   const sy = 1 + 0.07 * pulse;

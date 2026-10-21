@@ -1,0 +1,537 @@
+[
+  {
+    "id": "01-hook",
+    "speechEnd": 2.368,
+    "words": [
+      {
+        "text": "Este",
+        "start": 0,
+        "end": 0.29
+      },
+      {
+        "text": "animal",
+        "start": 0.325,
+        "end": 0.65
+      },
+      {
+        "text": "es",
+        "start": 0.708,
+        "end": 0.778
+      },
+      {
+        "text": "prácticamente",
+        "start": 0.824,
+        "end": 1.521
+      },
+      {
+        "text": "inmortal.",
+        "start": 1.556,
+        "end": 2.368
+      }
+    ]
+  },
+  {
+    "id": "02-nombre",
+    "speechEnd": 1.95,
+    "words": [
+      {
+        "text": "Se",
+        "start": 0,
+        "end": 0.163
+      },
+      {
+        "text": "llama",
+        "start": 0.186,
+        "end": 0.453
+      },
+      {
+        "text": "Turritopsis",
+        "start": 0.511,
+        "end": 1.115
+      },
+      {
+        "text": "dórnii…",
+        "start": 1.173,
+        "end": 1.95
+      }
+    ]
+  },
+  {
+    "id": "03-tamano",
+    "speechEnd": 3.994,
+    "words": [
+      {
+        "text": "…y",
+        "start": 0,
+        "end": 0.209
+      },
+      {
+        "text": "es",
+        "start": 0.255,
+        "end": 0.325
+      },
+      {
+        "text": "una",
+        "start": 0.383,
+        "end": 0.511
+      },
+      {
+        "text": "medusa",
+        "start": 0.557,
+        "end": 0.882
+      },
+      {
+        "text": "diminuta:",
+        "start": 0.94,
+        "end": 1.602
+      },
+      {
+        "text": "apenas",
+        "start": 1.823,
+        "end": 2.171
+      },
+      {
+        "text": "cuatro",
+        "start": 2.229,
+        "end": 2.496
+      },
+      {
+        "text": "milímetros",
+        "start": 2.531,
+        "end": 3.019
+      },
+      {
+        "text": "y",
+        "start": 3.077,
+        "end": 3.1
+      },
+      {
+        "text": "medio.",
+        "start": 3.146,
+        "end": 3.994
+      }
+    ]
+  },
+  {
+    "id": "04-envejece",
+    "speechEnd": 4.783,
+    "words": [
+      {
+        "text": "Para",
+        "start": 0,
+        "end": 0.232
+      },
+      {
+        "text": "casi",
+        "start": 0.29,
+        "end": 0.511
+      },
+      {
+        "text": "todos",
+        "start": 0.569,
+        "end": 0.813
+      },
+      {
+        "text": "los",
+        "start": 0.871,
+        "end": 0.998
+      },
+      {
+        "text": "animales,",
+        "start": 1.057,
+        "end": 1.66
+      },
+      {
+        "text": "envejecer",
+        "start": 1.823,
+        "end": 2.368
+      },
+      {
+        "text": "o",
+        "start": 2.426,
+        "end": 2.45
+      },
+      {
+        "text": "lastimarse",
+        "start": 2.496,
+        "end": 3.135
+      },
+      {
+        "text": "es",
+        "start": 3.216,
+        "end": 3.355
+      },
+      {
+        "text": "el",
+        "start": 3.413,
+        "end": 3.471
+      },
+      {
+        "text": "principio",
+        "start": 3.518,
+        "end": 3.971
+      },
+      {
+        "text": "del",
+        "start": 4.017,
+        "end": 4.133
+      },
+      {
+        "text": "fin.",
+        "start": 4.191,
+        "end": 4.783
+      }
+    ]
+  },
+  {
+    "id": "05-no-muere",
+    "speechEnd": 5.155,
+    "words": [
+      {
+        "text": "Pero",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "ella",
+        "start": 0.313,
+        "end": 0.511
+      },
+      {
+        "text": "hace",
+        "start": 0.569,
+        "end": 0.789
+      },
+      {
+        "text": "algo",
+        "start": 0.848,
+        "end": 1.057
+      },
+      {
+        "text": "distinto.",
+        "start": 1.103,
+        "end": 1.8
+      },
+      {
+        "text": "En",
+        "start": 2.09,
+        "end": 2.194
+      },
+      {
+        "text": "lugar",
+        "start": 2.252,
+        "end": 2.508
+      },
+      {
+        "text": "de",
+        "start": 2.566,
+        "end": 2.624
+      },
+      {
+        "text": "morir…",
+        "start": 2.67,
+        "end": 3.111
+      },
+      {
+        "text": "se",
+        "start": 3.46,
+        "end": 3.576
+      },
+      {
+        "text": "hunde,",
+        "start": 3.611,
+        "end": 4.029
+      },
+      {
+        "text": "y",
+        "start": 4.11,
+        "end": 4.18
+      },
+      {
+        "text": "se",
+        "start": 4.238,
+        "end": 4.319
+      },
+      {
+        "text": "encoge.",
+        "start": 4.354,
+        "end": 5.155
+      }
+    ]
+  },
+  {
+    "id": "06-quiste",
+    "speechEnd": 2.926,
+    "words": [
+      {
+        "text": "Su",
+        "start": 0,
+        "end": 0.163
+      },
+      {
+        "text": "cuerpo",
+        "start": 0.209,
+        "end": 0.522
+      },
+      {
+        "text": "se",
+        "start": 0.557,
+        "end": 0.639
+      },
+      {
+        "text": "reduce",
+        "start": 0.697,
+        "end": 1.022
+      },
+      {
+        "text": "a",
+        "start": 1.057,
+        "end": 1.08
+      },
+      {
+        "text": "una",
+        "start": 1.115,
+        "end": 1.242
+      },
+      {
+        "text": "pequeña",
+        "start": 1.289,
+        "end": 1.625
+      },
+      {
+        "text": "bolita",
+        "start": 1.66,
+        "end": 1.985
+      },
+      {
+        "text": "de",
+        "start": 2.032,
+        "end": 2.101
+      },
+      {
+        "text": "células.",
+        "start": 2.136,
+        "end": 2.926
+      }
+    ]
+  },
+  {
+    "id": "07-clave",
+    "speechEnd": 4.737,
+    "words": [
+      {
+        "text": "Y",
+        "start": 0,
+        "end": 0.116
+      },
+      {
+        "text": "entonces",
+        "start": 0.174,
+        "end": 0.592
+      },
+      {
+        "text": "ocurre",
+        "start": 0.65,
+        "end": 0.94
+      },
+      {
+        "text": "la",
+        "start": 0.987,
+        "end": 1.057
+      },
+      {
+        "text": "clave:",
+        "start": 1.103,
+        "end": 1.521
+      },
+      {
+        "text": "sus",
+        "start": 1.707,
+        "end": 1.904
+      },
+      {
+        "text": "células",
+        "start": 1.927,
+        "end": 2.299
+      },
+      {
+        "text": "cambian",
+        "start": 2.357,
+        "end": 2.67
+      },
+      {
+        "text": "de",
+        "start": 2.717,
+        "end": 2.775
+      },
+      {
+        "text": "tipo.",
+        "start": 2.821,
+        "end": 3.204
+      },
+      {
+        "text": "Transdiferenciación.",
+        "start": 3.309,
+        "end": 4.737
+      }
+    ]
+  },
+  {
+    "id": "08-polipo",
+    "speechEnd": 2.879,
+    "words": [
+      {
+        "text": "Así",
+        "start": 0,
+        "end": 0.255
+      },
+      {
+        "text": "vuelve",
+        "start": 0.313,
+        "end": 0.592
+      },
+      {
+        "text": "a",
+        "start": 0.627,
+        "end": 0.65
+      },
+      {
+        "text": "ser",
+        "start": 0.708,
+        "end": 0.836
+      },
+      {
+        "text": "un",
+        "start": 0.894,
+        "end": 0.952
+      },
+      {
+        "text": "pólipo,",
+        "start": 1.01,
+        "end": 1.509
+      },
+      {
+        "text": "como",
+        "start": 1.579,
+        "end": 1.776
+      },
+      {
+        "text": "en",
+        "start": 1.8,
+        "end": 1.846
+      },
+      {
+        "text": "su",
+        "start": 1.904,
+        "end": 1.997
+      },
+      {
+        "text": "juventud.",
+        "start": 2.043,
+        "end": 2.879
+      }
+    ]
+  },
+  {
+    "id": "09-brotes",
+    "speechEnd": 3.855,
+    "words": [
+      {
+        "text": "Y",
+        "start": 0,
+        "end": 0.104
+      },
+      {
+        "text": "de",
+        "start": 0.174,
+        "end": 0.232
+      },
+      {
+        "text": "ese",
+        "start": 0.29,
+        "end": 0.453
+      },
+      {
+        "text": "pólipo",
+        "start": 0.511,
+        "end": 0.917
+      },
+      {
+        "text": "brotan",
+        "start": 0.975,
+        "end": 1.3
+      },
+      {
+        "text": "medusas",
+        "start": 1.347,
+        "end": 1.73
+      },
+      {
+        "text": "nuevas,",
+        "start": 1.788,
+        "end": 2.194
+      },
+      {
+        "text": "genéticamente",
+        "start": 2.241,
+        "end": 2.949
+      },
+      {
+        "text": "idénticas.",
+        "start": 2.984,
+        "end": 3.855
+      }
+    ]
+  },
+  {
+    "id": "10-cierre",
+    "speechEnd": 2.74,
+    "words": [
+      {
+        "text": "Una",
+        "start": 0,
+        "end": 0.244
+      },
+      {
+        "text": "y",
+        "start": 0.302,
+        "end": 0.337
+      },
+      {
+        "text": "otra",
+        "start": 0.383,
+        "end": 0.592
+      },
+      {
+        "text": "vez…",
+        "start": 0.639,
+        "end": 1.033
+      },
+      {
+        "text": "mientras",
+        "start": 1.219,
+        "end": 1.602
+      },
+      {
+        "text": "nada",
+        "start": 1.66,
+        "end": 1.858
+      },
+      {
+        "text": "se",
+        "start": 1.904,
+        "end": 1.985
+      },
+      {
+        "text": "la",
+        "start": 2.032,
+        "end": 2.101
+      },
+      {
+        "text": "coma.",
+        "start": 2.148,
+        "end": 2.74
+      }
+    ]
+  }
+]

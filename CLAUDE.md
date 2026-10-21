@@ -8,7 +8,7 @@ y seguí su CLAUDE.md.
 ## ESTRUCTURA
 - curiosidades-ciencia/   → reels de curiosidades científicas
 - futbol-rivalidades/     → (reglas por definir)
-- yt-kids-historias/      → (reglas por definir)
+- yt-kids-historias/      → "Las Tardes de Pino", episodios calmos para chicos de 3-6 años
 - shared/scripts/         → herramientas compartidas por todos los nichos
 - Cada video: <nicho>/<nombre-del-video>/ con su proyecto Remotion en
   video/ y una carpeta Renders/ adentro.

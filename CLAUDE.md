@@ -41,3 +41,13 @@ graphics hechos en Remotion, sobre curiosidades científicas verificadas.
 2. Esperá mi aprobación o cambios antes de renderizar.
 3. Después de renderizar, mostrame el MP4 y preguntame qué ajustar.
 4. Guardá cada proyecto en su propia carpeta con un Renders/ adentro.
+
+## CONTROL DE VERSIONES (automático)
+- Cada vez que termines un cambio importante (una escena nueva, un 
+  ajuste aprobado, un render final), hacé automáticamente:
+  git add .
+  git commit -m "<mensaje corto describiendo qué cambió>"
+  git push
+- No me preguntes si querés que lo suba, hacelo solo después de cada 
+  ajuste terminado y avisame con una línea qué subiste.
+- Nunca subas la carpeta Renders/ ni node_modules.

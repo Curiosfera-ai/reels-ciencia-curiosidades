@@ -15,3 +15,6 @@ dist/
 Thumbs.db
 .env
 *.env
+
+# Muestras de voz para elegir (se regeneran)
+muestras-voz/

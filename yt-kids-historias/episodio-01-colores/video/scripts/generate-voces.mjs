@@ -13,7 +13,7 @@ const VOCES = {
   // Pino: media-aguda, alegre y cálida, algo pausada
   pino: { voiceId: "cgSgspJ2msm6clMCkdW9", settings: { speed: 0.92, stability: 0.5, style: 0.35 } },
   // Nube: grave, muy lenta y suave
-  nube: { voiceId: "pqHfZKP75CyZlD1AqVGX", settings: { speed: 0.75, stability: 0.7, style: 0.1 } },
+  nube: { voiceId: "pqHfZKP75CvOlQylNhV4", settings: { speed: 0.75, stability: 0.7, style: 0.1 } },
   // Beto: muy aguda, rápida y cantarina
   beto: { voiceId: "FGY2WhTYpPnrIDTdsKH5", settings: { speed: 1.15, stability: 0.35, style: 0.6 } },
 };

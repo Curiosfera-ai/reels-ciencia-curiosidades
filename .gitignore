@@ -1,0 +1,16 @@
+# Dependencias
+node_modules/
+
+# Videos renderizados (se regeneran con remotion render)
+Renders/
+out/
+dist/
+
+# Audio generado por scripts/generate-audio.mjs (se regenera con: node scripts/generate-audio.mjs)
+**/public/audio/
+*.tmp.wav
+
+# Sistema y secretos
+.DS_Store
+Thumbs.db
+.env

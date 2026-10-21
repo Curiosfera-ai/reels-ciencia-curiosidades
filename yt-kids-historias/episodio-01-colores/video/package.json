@@ -26,7 +26,8 @@
   },
   "scripts": {
     "dev": "remotion studio",
-    "audio": "node ../../../shared/scripts/generate-audio.mjs .",
+    "audio": "node ../../../shared/scripts/generate-audio.mjs . kids",
+    "voces": "node scripts/generate-voces.mjs",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"

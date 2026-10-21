@@ -1,0 +1,75 @@
+{
+  "titulo": "Rojo, azul y amarillo",
+  "inicio": 200,
+  "bpm": 80,
+  "introBeats": 4,
+  "outroBeats": 4,
+  "nota": "Un compás (4 tiempos) por verso. syl = [tiempos, nota MIDI]. Esta partitura la leen la pista (npm run audio) y la letra en pantalla, así que siempre coinciden.",
+  "versos": [
+    { "acordes": [[4, "C"]], "palabras": [
+      { "text": "Rojo,", "syl": [[0.5, 67], [0.5, 64]] },
+      { "text": "azul", "syl": [[0.25, 67], [0.75, 69]] },
+      { "text": "y", "syl": [[0.5, 67]] },
+      { "text": "amarillo,", "syl": [[0.5, 64], [0.5, 72], [0.5, 67]] } ] },
+    { "acordes": [[4, "F"]], "palabras": [
+      { "text": "qué", "syl": [[0.5, 65]] },
+      { "text": "lindos", "syl": [[0.5, 69], [0.5, 69]] },
+      { "text": "los", "syl": [[0.25, 67]] },
+      { "text": "colores", "syl": [[0.25, 65], [0.5, 69], [0.5, 72]] },
+      { "text": "son.", "syl": [[1, 69]] } ] },
+    { "acordes": [[4, "C"]], "palabras": [
+      { "text": "Rojo,", "syl": [[0.5, 67], [0.5, 64]] },
+      { "text": "azul", "syl": [[0.25, 67], [0.75, 69]] },
+      { "text": "y", "syl": [[0.5, 67]] },
+      { "text": "amarillo,", "syl": [[0.5, 64], [0.5, 72], [0.5, 67]] } ] },
+    { "acordes": [[2, "G"], [2, "C"]], "palabras": [
+      { "text": "los", "syl": [[0.5, 67]] },
+      { "text": "llevo", "syl": [[0.5, 65], [0.5, 64]] },
+      { "text": "en", "syl": [] },
+      { "text": "mi", "syl": [[0.5, 62]] },
+      { "text": "corazón.", "syl": [[0.5, 64], [0.5, 62], [1, 60]] } ] },
+    { "acordes": [[4, "F"]], "palabras": [
+      { "text": "Roja,", "syl": [[0.5, 72], [0.5, 72]] },
+      { "text": "roja", "syl": [[0.5, 69], [0.5, 69]] },
+      { "text": "la", "syl": [[0.5, 65]] },
+      { "text": "manzana,", "syl": [[0.5, 69], [0.5, 72], [0.5, 69]] } ] },
+    { "acordes": [[4, "C"]], "palabras": [
+      { "text": "azul,", "syl": [[0.5, 64], [0.5, 67]] },
+      { "text": "azul", "syl": [[0.5, 64], [0.5, 67]] },
+      { "text": "el", "syl": [[0.5, 64]] },
+      { "text": "cielo", "syl": [[0.5, 67], [0.5, 72]] },
+      { "text": "es,", "syl": [[0.5, 67]] } ] },
+    { "acordes": [[4, "G"]], "palabras": [
+      { "text": "amarillo", "syl": [[0.5, 62], [0.5, 67], [0.5, 71], [0.5, 67]] },
+      { "text": "el", "syl": [] },
+      { "text": "sol", "syl": [[0.5, 74]] },
+      { "text": "que", "syl": [[0.5, 71]] },
+      { "text": "brilla,", "syl": [[0.5, 67], [0.5, 62]] } ] },
+    { "acordes": [[4, "C"]], "palabras": [
+      { "text": "¡colores", "syl": [[0.5, 64], [0.5, 65], [0.5, 67]] },
+      { "text": "para", "syl": [[0.5, 69], [0.5, 71]] },
+      { "text": "ver!", "syl": [[1.5, 72]] } ] },
+    { "acordes": [[4, "C"]], "palabras": [
+      { "text": "Rojo,", "syl": [[0.5, 67], [0.5, 64]] },
+      { "text": "azul", "syl": [[0.25, 67], [0.75, 69]] },
+      { "text": "y", "syl": [[0.5, 67]] },
+      { "text": "amarillo,", "syl": [[0.5, 64], [0.5, 72], [0.5, 67]] } ] },
+    { "acordes": [[4, "F"]], "palabras": [
+      { "text": "qué", "syl": [[0.5, 65]] },
+      { "text": "lindos", "syl": [[0.5, 69], [0.5, 69]] },
+      { "text": "los", "syl": [[0.25, 67]] },
+      { "text": "colores", "syl": [[0.25, 65], [0.5, 69], [0.5, 72]] },
+      { "text": "son.", "syl": [[1, 69]] } ] },
+    { "acordes": [[4, "C"]], "palabras": [
+      { "text": "Rojo,", "syl": [[0.5, 67], [0.5, 64]] },
+      { "text": "azul", "syl": [[0.25, 67], [0.75, 69]] },
+      { "text": "y", "syl": [[0.5, 67]] },
+      { "text": "amarillo,", "syl": [[0.5, 64], [0.5, 72], [0.5, 67]] } ] },
+    { "acordes": [[2, "G"], [2, "C"]], "palabras": [
+      { "text": "los", "syl": [[0.5, 67]] },
+      { "text": "llevo", "syl": [[0.5, 65], [0.5, 64]] },
+      { "text": "en", "syl": [] },
+      { "text": "mi", "syl": [[0.5, 62]] },
+      { "text": "corazón.", "syl": [[0.5, 64], [0.5, 62], [1, 60]] } ] }
+  ]
+}

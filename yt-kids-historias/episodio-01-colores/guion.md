@@ -54,31 +54,30 @@
 
 ## 6. Canción de cierre: "Rojo, azul y amarillo" (3:20–4:02, 42 s)
 
-Tempo tranquilo (~90 bpm). Cantan Pino, Beto y Nube. La letra aparece abajo, palabra por palabra.
+Tempo tranquilo (80 bpm, un compás de 3 s por verso): 1 compás de intro, 12 versos y 1 compás de final. Cantan Pino, Beto y Nube. La letra aparece abajo, palabra por palabra. Los planos siguen a la música: cada uno arranca justo cuando empieza su parte.
 
 | # | Tiempo | Visual (plano) | Letra |
 |---|--------|----------------|-------|
-| 20 | 3:20–3:32 (12 s) | Los tres se balancean en el claro; tres círculos de color laten al ritmo | **Estribillo:** "Rojo, azul y amarillo, / qué lindos los colores son. / Rojo, azul y amarillo, / los llevo en mi corazón." |
-| 21 | 3:32–3:42 (10 s) | La manzana, el cielo y el sol aparecen al compás | **Estrofa:** "Roja, roja la manzana, / azul, azul el cielo es, / amarillo el sol que brilla, / ¡colores para ver!" |
-| 22 | 3:42–3:54 (12 s) | Vuelve el plano de los tres; Beto vuela en círculos | **Estribillo:** "Rojo, azul y amarillo, / qué lindos los colores son. / Rojo, azul y amarillo, / los llevo en mi corazón." |
-| 23 | 3:54–4:02 (8 s) | Cierre musical: los tres círculos se juntan en un arcoíris chiquito | Final instrumental suave, nota larga |
+| 20 | 3:20–3:35 (15 s) | Intro y estribillo. Los tres se balancean en el claro; tres círculos de color laten al ritmo | **Estribillo:** "Rojo, azul y amarillo, / qué lindos los colores son. / Rojo, azul y amarillo, / los llevo en mi corazón." |
+| 21 | 3:35–3:47 (12 s) | La manzana, el cielo y el sol aparecen al compás | **Estrofa:** "Roja, roja la manzana, / azul, azul el cielo es, / amarillo el sol que brilla, / ¡colores para ver!" |
+| 22 | 3:47–4:02 (15 s) | Vuelve el plano de los tres; Beto vuela en círculos. En el compás final, los tres círculos se juntan y se dibuja un arcoíris | **Estribillo:** "Rojo, azul y amarillo, / qué lindos los colores son. / Rojo, azul y amarillo, / los llevo en mi corazón." · Final instrumental suave |
 
 ## 7. Despedida (4:02–4:16)
 
 | # | Tiempo | Visual (plano) | Diálogo | Sonido |
 |---|--------|----------------|---------|--------|
-| 24 | 4:02–4:16 (14 s) | Los tres saludan a cámara; fundido lento al cartel "Las Tardes de Pino" | Pino: "¡Chau, amigos! Nos vemos en otra tarde del Bosque Redondo." · Nube: "Chau…" · Beto: "¡Tirirí!" | Campanita final; la música baja de a poco |
+| 23 | 4:02–4:16 (14 s) | Los tres saludan a cámara; fundido lento al cartel "Las Tardes de Pino" | Pino: "¡Chau, amigos! Nos vemos en otra tarde del Bosque Redondo." · Nube: "Chau…" · Beto: "¡Tirirí!" | Campanita final; la música baja de a poco |
 
 ## Voces y canción
 - **Voces (ElevenLabs):** tienen que ser bien distintas en tono y velocidad, para que un chico de 4 años sepa quién habla sin leer.
   - Pino: voz media-aguda, alegre y cálida, a velocidad normal y algo pausada.
   - Nube: voz grave, muy lenta y suave, con pausas largas entre frases.
   - Beto: voz muy aguda y rápida, cantarina, con el "tirirí".
-- **Canción:** con ElevenLabs Music, si hay acceso. Una melodía sintetizada sonaría plana justo en el momento más memorable del episodio.
+- **Canción:** con ElevenLabs Music, si hay acceso. Una melodía sintetizada sonaría plana justo en el momento más memorable del episodio. Mientras tanto hay una pista guía instrumental (flauta y cajita de música) generada desde `video/src/cancion.json`, la misma partitura que sincroniza la letra en pantalla.
 - **Música de fondo y campanitas:** se generan con código en el script compartido, con sonidos propios del nicho (sin los golpes ni los stings de los reels).
 
 ## Verificación de las reglas de ritmo calmo
-- **Planos largos:** 24 planos en 256 s. El más corto dura 8 s y el más largo 18 s. Ningún cambio visual cada 2-3 s.
+- **Planos largos:** 23 planos en 256 s. El más corto dura 8 s y el más largo 18 s. Ningún cambio visual cada 2-3 s, y entre planos hay un fundido suave de 0,6 s en vez de cortes secos.
 - **Sin ganchos:** el título y el tema se dicen en los primeros 8 s, y en 0:18 se nombran los tres colores.
 - **Preguntas a cámara con pausa real:** hay tres preguntas con 3 s de silencio (planos 7, 11 y 15). Además, el resumen tiene tres pausas de 2 s para que los chicos respondan.
 - **Repetición:** contando la canción, "rojo/a" se dice 17 veces, "azul" 17 y "amarillo/a" 16. "Rojo, azul y amarillo" aparece 6 veces: en la presentación, en el resumen y dos veces en cada estribillo. "¡Qué lindo color!" cierra los tres colores.

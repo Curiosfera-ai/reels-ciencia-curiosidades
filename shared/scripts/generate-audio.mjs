@@ -1,13 +1,17 @@
 // Genera la música y los efectos de sonido de un video con síntesis programática.
 // Compartido por todos los nichos del repo.
-// Uso: node shared/scripts/generate-audio.mjs <carpeta-del-proyecto-remotion>
+// Uso: node shared/scripts/generate-audio.mjs <carpeta-del-proyecto-remotion> [perfil]
 //   →  escribe WAVs en <carpeta>/public/audio/   (sin argumento: la carpeta actual)
+// Perfiles: "reels" (por defecto: golpes, whooshes, stings) y "kids" (música suave,
+// campanitas y la canción del episodio, leída de <carpeta>/src/cancion.json).
 // Ej.: desde curiosidades-ciencia/medusa-inmortal/video →  npm run audio
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const SR = 44100;
-const OUT = join(resolve(process.argv[2] ?? process.cwd()), "public", "audio");
+const PROJECT = resolve(process.argv[2] ?? process.cwd());
+const PERFIL = process.argv[3] ?? "reels";
+const OUT = join(PROJECT, "public", "audio");
 mkdirSync(OUT, { recursive: true });
 
 // Ruido determinista para que cada render suene igual
@@ -338,6 +342,164 @@ const whooshLow = () => {
   const swept = bandpass(buffer(dur).map(() => noise()), (t) => 120 + 600 * (t / dur), 1.8);
   return swept.map((v, i) => v * Math.sin((Math.PI * i) / swept.length) ** 2);
 };
+
+// --- Perfil kids: todo suave, sin golpes -----------------------------------
+
+const midi = (m) => 440 * Math.pow(2, (m - 69) / 12);
+
+// Suma una nota dando la vuelta al final (para que el loop no tenga costura)
+const addWrapped = (data, start, dur, fn) => {
+  const s = Math.round(start * SR);
+  const n = Math.round(dur * SR);
+  for (let i = 0; i < n; i++) data[(s + i) % data.length] += fn(i / SR);
+};
+
+// Suma una nota sin pasarse del final
+const addAt = (data, start, dur, fn) => {
+  const s = Math.round(start * SR);
+  for (let i = 0; i < dur * SR && s + i < data.length; i++) data[s + i] += fn(i / SR);
+};
+
+// Cajita de música: tono puro con un brillo que se apaga rápido
+const cajita = (f, amp = 1, decay = 0.9) => (t) =>
+  amp *
+  Math.min(1, t / 0.006) *
+  (Math.sin(2 * Math.PI * f * t) * Math.exp(-t / decay) +
+    0.3 * Math.sin(2 * Math.PI * 2 * f * t) * Math.exp(-t / (decay * 0.35)) +
+    0.08 * Math.sin(2 * Math.PI * 3 * f * t) * Math.exp(-t / (decay * 0.15)));
+
+const ACORDES = { C: [48, 52, 55], F: [53, 57, 60], G: [55, 59, 62], Am: [57, 60, 64] };
+
+// Colchón de acordes muy suave (seno + un poco de octava)
+const padFn = (notes, dur, amp) => (t) => {
+  const env = Math.min(1, t / 0.8) * Math.max(0, Math.min(1, (dur - t) / 0.6));
+  let v = 0;
+  for (const m of notes) {
+    const f = midi(m + 12);
+    v += Math.sin(2 * Math.PI * f * t) + 0.2 * Math.sin(4 * Math.PI * f * t);
+  }
+  return v * env * amp;
+};
+
+// Música de fondo del Bosque Redondo: 80 bpm, C – Am – F – G, loop de 24 s sin costura
+const musicaBosque = () => {
+  const beat = 60 / 80;
+  const bar = beat * 4;
+  const prog = ["C", "C", "Am", "Am", "F", "F", "G", "G"];
+  const data = buffer(bar * prog.length);
+  prog.forEach((name, b) => {
+    const notes = ACORDES[name];
+    addWrapped(data, b * bar, bar + 0.6, padFn(notes, bar + 0.6, 0.05));
+    addWrapped(data, b * bar, 2.5, cajita(midi(notes[0] - 12), 0.35, 1.2));
+    // arpegio de cajita en negras: raíz, quinta, octava, quinta
+    [0, 2, 0, 2].forEach((k, n) => {
+      const m = notes[k] + 24 + (n === 2 ? 12 : 0);
+      addWrapped(data, b * bar + n * beat, 1.8, cajita(midi(m), n === 0 ? 0.3 : 0.2, 0.7));
+    });
+  });
+  return lowpass(data, 5000);
+};
+
+// Campanita: tono de campana corto y suave
+const campanita = (f) =>
+  buffer(1.8).map((_, i) => {
+    const t = i / SR;
+    return (
+      Math.min(1, t / 0.008) *
+      (Math.sin(2 * Math.PI * f * t) * Math.exp(-t / 0.6) +
+        0.35 * Math.sin(2 * Math.PI * 2.76 * f * t) * Math.exp(-t / 0.2) +
+        0.12 * Math.sin(2 * Math.PI * 5.4 * f * t) * Math.exp(-t / 0.08))
+    );
+  });
+
+const campanitaFinal = () => {
+  const data = buffer(3);
+  [1046.5, 1318.5, 1568, 2093].forEach((f, k) => {
+    const s = Math.round(k * 0.18 * SR);
+    const one = campanita(f);
+    for (let i = 0; i < one.length && s + i < data.length; i++) data[s + i] += one[i] * (1 - k * 0.12);
+  });
+  return data;
+};
+
+// Trino de Beto: tres "piiu" cortitos, finos y suaves
+const trino = () => {
+  const data = buffer(0.9);
+  [0, 0.2, 0.42].forEach((start, k) => {
+    const s = Math.round(start * SR);
+    const dur = 0.13;
+    let phase = 0;
+    for (let i = 0; i < dur * SR; i++) {
+      const t = i / SR;
+      const f = 2600 + 900 * (t / dur) + 120 * Math.sin(2 * Math.PI * 30 * t) + k * 150;
+      phase += (2 * Math.PI * f) / SR;
+      data[s + i] += Math.sin(phase) * Math.sin((Math.PI * t) / dur) ** 2;
+    }
+  });
+  return data;
+};
+
+// Canción del episodio: melodía de flauta + acompañamiento, desde src/cancion.json.
+// Es una pista guía: la versión cantada sale de ElevenLabs Music con esta misma partitura.
+const cancion = () => {
+  const song = JSON.parse(readFileSync(join(PROJECT, "src", "cancion.json"), "utf8"));
+  const beat = 60 / song.bpm;
+  const totalBeats = song.introBeats + song.versos.length * 4 + song.outroBeats;
+  const data = buffer(totalBeats * beat + 2);
+  const flauta = (f, dur, amp) => (t) => {
+    const env = Math.min(1, t / 0.04) * Math.max(0, Math.min(1, (dur - t) / 0.08));
+    const vib = 1 + 0.004 * Math.sin(2 * Math.PI * 5 * t) * Math.min(1, t / 0.3);
+    return amp * env * (Math.sin(2 * Math.PI * f * vib * t) + 0.18 * Math.sin(4 * Math.PI * f * vib * t) + 0.06 * Math.sin(6 * Math.PI * f * t));
+  };
+  const acompanar = (start, beats, name) => {
+    const notes = ACORDES[name];
+    const dur = beats * beat + 0.3;
+    addAt(data, start, dur, padFn(notes, dur, 0.05));
+    for (let n = 0; n < beats; n++) {
+      const t0 = start + n * beat;
+      if (n % 2 === 0) addAt(data, t0, 2, cajita(midi(notes[0] - 12), 0.35, 1));
+      addAt(data, t0, 1.2, cajita(midi(notes[[0, 2, 1, 2][n % 4]] + 24), 0.14, 0.5));
+      addAt(data, t0 + beat / 2, 1.2, cajita(midi(notes[[1, 2, 0, 2][n % 4]] + 24), 0.1, 0.4));
+    }
+  };
+  acompanar(0, song.introBeats, "C");
+  song.versos.forEach((verso, i) => {
+    const lineStart = (song.introBeats + i * 4) * beat;
+    let t = lineStart;
+    for (const [beats, name] of verso.acordes) {
+      acompanar(t, beats, name);
+      t += beats * beat;
+    }
+    let cursor = lineStart;
+    for (const palabra of verso.palabras) {
+      for (const [beats, m] of palabra.syl) {
+        const dur = beats * beat * 0.92;
+        addAt(data, cursor, dur, flauta(midi(m), dur, 1));
+        addAt(data, cursor, dur, flauta(midi(m - 12), dur, 0.35));
+        cursor += beats * beat;
+      }
+    }
+  });
+  const outro = (song.introBeats + song.versos.length * 4) * beat;
+  addAt(data, outro, song.outroBeats * beat + 1.5, padFn([48, 52, 55, 60], song.outroBeats * beat + 1.5, 0.06));
+  [60, 64, 67, 72].forEach((m, k) => addAt(data, outro + k * beat * 0.5, 3, cajita(midi(m + 12), 0.25, 1.2)));
+  // fundido final para que termine en silencio
+  const fadeStart = Math.round(totalBeats * beat * SR);
+  for (let i = fadeStart; i < data.length; i++) data[i] *= Math.max(0, 1 - (i - fadeStart) / (2 * SR));
+  return lowpass(data, 6000);
+};
+
+if (PERFIL === "kids") {
+  console.log("Generando audio (perfil kids) en public/audio/");
+  writeWav("musica-bosque", musicaBosque(), 0.8);
+  writeWav("campanita-1", campanita(1046.5), 0.6);
+  writeWav("campanita-2", campanita(1318.5), 0.6);
+  writeWav("campanita-3", campanita(1568), 0.6);
+  writeWav("campanita-final", campanitaFinal(), 0.6);
+  writeWav("trino", trino(), 0.5);
+  if (existsSync(join(PROJECT, "src", "cancion.json"))) writeWav("cancion", cancion(), 0.85);
+  process.exit(0);
+}
 
 console.log("Generando audio en public/audio/");
 [300, 360, 420, 500].forEach((f, k) => writeWav(`bloop-${k + 1}`, bloop(f), 0.7));

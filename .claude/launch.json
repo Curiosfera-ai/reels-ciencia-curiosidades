@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pino-ep01",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "cd yt-kids-historias\\episodio-01-colores\\video && npx remotion studio --no-open --port 3011"],
+      "port": 3011
+    }
+  ]
+}

@@ -28,7 +28,8 @@ y seguí su CLAUDE.md.
   shared/scripts/generate-audio.mjs (síntesis programática, nada externo).
 - Uso: node shared/scripts/generate-audio.mjs <carpeta-del-proyecto-remotion>
   → escribe los WAV en <carpeta>/public/audio/. Cada proyecto lo expone
-  como "npm run audio".
+  como "npm run audio". Perfiles: "reels" (por defecto) y "kids"
+  (música suave, campanitas y la canción desde src/cancion.json).
 - Los WAV generados no se suben a git: se regeneran idénticos.
 
 ## CONTROL DE VERSIONES (automático)

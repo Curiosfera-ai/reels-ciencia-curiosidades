@@ -1,19 +1,96 @@
-import { AbsoluteFill } from "remotion";
+import { Audio } from "@remotion/media";
+import { AbsoluteFill, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { PlanoStart } from "./anim";
+import { Letra, Subtitulos } from "./components/Textos";
+import { PLANO_COMPONENTES } from "./Planos";
+import { colors as c, SUBTITULOS } from "./theme";
+import { DURACION, FUNDIDO, LINES, PLANOS, SONG_END, SONG_START, line, wordAt } from "./timeline";
 
-// Placeholder: la animación se arma recién cuando se apruebe el guion (../guion.md)
+// Efectos amables: solo campanitas y el trino de Beto (ver ../guion.md)
+const SONIDOS: [number, string][] = [
+  [1, "campanita-2"], // título
+  [wordAt("03-tres", "rojo"), "campanita-1"],
+  [wordAt("03-tres", "azul"), "campanita-2"],
+  [wordAt("03-tres", "amarillo"), "campanita-3"],
+  [wordAt("05-nube", "manzana"), "campanita-2"], // brilla la manzana
+  [line("07-respuesta").end, "campanita-3"],
+  [78.6, "trino"], // llega Beto
+  [wordAt("10-pino", "azul"), "campanita-2"],
+  [line("11-respuesta").end, "campanita-3"],
+  [wordAt("14-pino", "amarillo"), "campanita-2"],
+  [line("15-respuesta").end, "campanita-3"],
+  [line("18-roja").start, "campanita-1"],
+  [line("18-azul").start, "campanita-2"],
+  [line("18-amarillo").start, "campanita-3"],
+  [251, "campanita-final"],
+];
+
+const MUSICA = 0.22;
+
+const Plano: React.FC<{ index: number; children: React.ReactNode }> = ({ index, children }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const opacity = index === 0 ? 1 : interpolate(frame, [0, FUNDIDO * fps], [0, 1], { extrapolateRight: "clamp" });
+  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+};
+
 export const Episodio01Colores: React.FC = () => {
+  const { fps } = useVideoConfig();
   return (
-    <AbsoluteFill
-      style={{
-        backgroundColor: "#FFF4E0",
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily: "sans-serif",
-        fontSize: 80,
-        color: "#E8894A",
-      }}
-    >
-      Pino aprende los colores
+    <AbsoluteFill style={{ backgroundColor: c.crema }}>
+      {PLANOS.map(([from, to], i) => {
+        const Comp = PLANO_COMPONENTES[i];
+        const extra = i === PLANOS.length - 1 ? 0 : FUNDIDO;
+        return (
+          <Sequence key={from} name={`Plano ${i + 1}`} from={Math.round(from * fps)} durationInFrames={Math.round((to - from + extra) * fps)}>
+            <PlanoStart.Provider value={from}>
+              <Plano index={i}>
+                <Comp />
+              </Plano>
+            </PlanoStart.Provider>
+          </Sequence>
+        );
+      })}
+
+      {SUBTITULOS ? <Subtitulos /> : null}
+      <Letra />
+
+      {/* Música de fondo: suave y constante; se aparta para la canción */}
+      <Sequence name="Música" durationInFrames={Math.round(SONG_START * fps)}>
+        <Audio
+          src={staticFile("audio/musica-bosque.wav")}
+          loop
+          volume={(f) =>
+            MUSICA * interpolate(f, [0, 1.5 * fps, (SONG_START - 4) * fps, SONG_START * fps], [0, 1, 1, 0], { extrapolateRight: "clamp" })
+          }
+        />
+      </Sequence>
+      <Sequence name="Canción" from={Math.round(SONG_START * fps)} durationInFrames={Math.round((SONG_END - SONG_START + 1) * fps)}>
+        <Audio src={staticFile("audio/cancion.wav")} volume={0.8} />
+      </Sequence>
+      <Sequence name="Música (despedida)" from={Math.round(SONG_END * fps)}>
+        <Audio
+          src={staticFile("audio/musica-bosque.wav")}
+          loop
+          volume={(f) => {
+            const fin = (DURACION - SONG_END) * fps;
+            return MUSICA * interpolate(f, [0, 1.5 * fps, fin - 3 * fps, fin], [0, 1, 1, 0], { extrapolateRight: "clamp" });
+          }}
+        />
+      </Sequence>
+
+      {SONIDOS.map(([at, file], i) => (
+        <Sequence key={i} name={file} from={Math.round(at * fps)} durationInFrames={Math.round(2.5 * fps)}>
+          <Audio src={staticFile(`audio/${file}.wav`)} volume={0.35} />
+        </Sequence>
+      ))}
+
+      {/* Voces (cuando estén grabadas con npm run voces) */}
+      {LINES.filter((l) => l.hasVoice).map((l) => (
+        <Sequence key={l.id} name={`Voz ${l.id}`} from={Math.round(l.start * fps)} durationInFrames={Math.ceil((l.end - l.start + 0.3) * fps)}>
+          <Audio src={staticFile(`voces/${l.id}.mp3`)} />
+        </Sequence>
+      ))}
     </AbsoluteFill>
   );
 };

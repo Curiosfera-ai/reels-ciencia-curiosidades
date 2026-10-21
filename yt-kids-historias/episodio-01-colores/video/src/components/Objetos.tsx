@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import { useTime } from "../anim";
+import { useEstilo, useTime } from "../anim";
 import { colors as c } from "../theme";
 import { Nubecita } from "./Bosque";
 
@@ -56,18 +56,37 @@ const svg = (viewBox: string, children: React.ReactNode) => (
   </svg>
 );
 
-export const Manzana: React.FC = () =>
-  svg(
+export const Manzana: React.FC = () => {
+  const vol = useEstilo() === "25d";
+  const id = useId().replace(/:/g, "");
+  const forma = (
+    <>
+      <circle cx={76} cy={116} r={60} />
+      <circle cx={124} cy={116} r={60} />
+      <ellipse cx={100} cy={142} rx={76} ry={48} />
+    </>
+  );
+  return svg(
     "0 0 200 200",
     <>
+      {vol ? (
+        <defs>
+          <clipPath id={`manzana-${id}`}>{forma}</clipPath>
+          <radialGradient id={`luz-${id}`} cx="0.32" cy="0.3" r="0.85">
+            <stop offset="0" stopColor="#fff" stopOpacity={0.35} />
+            <stop offset="0.45" stopColor="#fff" stopOpacity={0} />
+            <stop offset="1" stopColor="#7A1F25" stopOpacity={0.45} />
+          </radialGradient>
+        </defs>
+      ) : null}
       <path d="M100 62 Q98 40 110 26" stroke={c.tronco} strokeWidth={9} strokeLinecap="round" fill="none" />
       <ellipse cx={132} cy={44} rx={26} ry={12} transform="rotate(-25 132 44)" fill="#8CCB7E" />
-      <circle cx={76} cy={116} r={60} fill={c.rojo} />
-      <circle cx={124} cy={116} r={60} fill={c.rojo} />
-      <ellipse cx={100} cy={142} rx={76} ry={48} fill={c.rojo} />
+      <g fill={c.rojo}>{forma}</g>
+      {vol ? <rect x={0} y={40} width={200} height={160} fill={`url(#luz-${id})`} clipPath={`url(#manzana-${id})`} /> : null}
       <ellipse cx={66} cy={98} rx={13} ry={24} transform="rotate(-25 66 98)" fill="#fff" opacity={0.45} />
     </>,
   );
+};
 
 export const Hongo: React.FC = () =>
   svg(

@@ -1,6 +1,6 @@
 import { Audio } from "@remotion/media";
 import { AbsoluteFill, interpolate, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { PlanoStart } from "./anim";
+import { EstiloCtx, PlanoStart, useEstilo } from "./anim";
 import { Letra, Subtitulos } from "./components/Textos";
 import { PLANO_COMPONENTES } from "./Planos";
 import { colors as c, SUBTITULOS } from "./theme";
@@ -30,8 +30,26 @@ const MUSICA = 0.22;
 const Plano: React.FC<{ index: number; children: React.ReactNode }> = ({ index, children }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const estilo = useEstilo();
   const opacity = index === 0 ? 1 : interpolate(frame, [0, FUNDIDO * fps], [0, 1], { extrapolateRight: "clamp" });
-  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+  // En 2.5D la cámara se acerca muy despacio durante todo el plano
+  const [from, to] = PLANOS[index];
+  const dolly = estilo === "25d" ? interpolate(frame, [0, (to - from) * fps], [1, 1.045], { extrapolateRight: "clamp" }) : 1;
+  return <AbsoluteFill style={{ opacity, scale: String(dolly), transformOrigin: "50% 60%" }}>{children}</AbsoluteFill>;
+};
+
+// Prueba del estilo 2.5D: planos 5, 6 y 7 (0:36–1:08) con voces, para comparar
+export const PRUEBA_25D = { desde: 36, hasta: 68 };
+
+export const Prueba25D: React.FC = () => {
+  const { fps } = useVideoConfig();
+  return (
+    <EstiloCtx.Provider value="25d">
+      <Sequence from={-PRUEBA_25D.desde * fps}>
+        <Episodio01Colores />
+      </Sequence>
+    </EstiloCtx.Provider>
+  );
 };
 
 export const Episodio01Colores: React.FC = () => {

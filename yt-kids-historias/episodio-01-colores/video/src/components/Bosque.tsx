@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
-import { useTime } from "../anim";
+import { useEstilo, useTime } from "../anim";
 import { colors as c } from "../theme";
 
 // El Bosque Redondo: cielo, nubes, lomas redondas, árboles chupetín y pasto con
@@ -91,11 +91,12 @@ const Florcita: React.FC<{ x: number; y: number; color: string }> = ({ x, y, col
   </g>
 );
 
-export const Arbol: React.FC<{ x: number; y: number; s: number }> = ({ x, y, s }) => (
+export const Arbol: React.FC<{ x: number; y: number; s: number; vol?: boolean }> = ({ x, y, s, vol = false }) => (
   <g transform={`translate(${x} ${y}) scale(${s})`}>
-    <rect x={-17} y={-150} width={34} height={150} rx={17} fill={c.tronco} />
-    <circle cx={0} cy={-200} r={92} fill={c.copa} />
-    <circle cx={-28} cy={-228} r={44} fill={c.copaClara} opacity={0.7} />
+    {vol ? <ellipse cx={0} cy={0} rx={60} ry={12} fill="#5E8F4E" opacity={0.25} /> : null}
+    <rect x={-17} y={-150} width={34} height={150} rx={17} fill={vol ? "url(#tronco25)" : c.tronco} />
+    <circle cx={0} cy={-200} r={92} fill={vol ? "url(#copa25)" : c.copa} />
+    {vol ? null : <circle cx={-28} cy={-228} r={44} fill={c.copaClara} opacity={0.7} />}
   </g>
 );
 
@@ -106,7 +107,11 @@ export const Bosque: React.FC<{ pan?: number; tilt?: number; zoom?: number; sinA
   sinArboles = false,
 }) => {
   const { t } = useTime();
+  const vol = useEstilo() === "25d";
   const down = tilt * TILT_PX;
+  // En 2.5D, lo lejano se desenfoca (más aún en los primeros planos, con zoom)
+  const blurLejos = vol ? `url(#desenfoque-lejos)` : undefined;
+  const blurMedio = vol ? `url(#desenfoque-medio)` : undefined;
   return (
     <AbsoluteFill style={{ scale: String(zoom), transformOrigin: "50% 86%" }}>
       <svg viewBox="0 0 1920 1080" width="100%" height="100%">
@@ -115,6 +120,35 @@ export const Bosque: React.FC<{ pan?: number; tilt?: number; zoom?: number; sinA
             <stop offset="0" stopColor={c.cieloArriba} />
             <stop offset="1" stopColor={c.cieloAbajo} />
           </linearGradient>
+          {vol ? (
+            <>
+              <filter id="desenfoque-lejos" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation={4 * zoom * zoom} />
+              </filter>
+              <filter id="desenfoque-medio" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation={1.6 * zoom * zoom} />
+              </filter>
+              <radialGradient id="copa25" cx="0.35" cy="0.3" r="0.8">
+                <stop offset="0" stopColor="#C8EBC2" />
+                <stop offset="0.55" stopColor={c.copa} />
+                <stop offset="1" stopColor="#74B270" />
+              </radialGradient>
+              <linearGradient id="tronco25" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stopColor="#DDB894" />
+                <stop offset="1" stopColor="#A9805C" />
+              </linearGradient>
+              <linearGradient id="pasto25" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor="#B8DFA6" />
+                <stop offset="0.35" stopColor={c.pasto} />
+                <stop offset="1" stopColor="#8DC47C" />
+              </linearGradient>
+              <radialGradient id="sol25" cx="0.12" cy="0.05" r="0.9">
+                <stop offset="0" stopColor="#FFF3C9" stopOpacity={0.55} />
+                <stop offset="0.5" stopColor="#FFF3C9" stopOpacity={0.12} />
+                <stop offset="1" stopColor="#FFF3C9" stopOpacity={0} />
+              </radialGradient>
+            </>
+          ) : null}
         </defs>
         <rect width={1920} height={1080} fill="url(#cielo)" />
         <g transform={`translate(0 ${down * 0.5})`}>
@@ -124,21 +158,25 @@ export const Bosque: React.FC<{ pan?: number; tilt?: number; zoom?: number; sinA
           })}
         </g>
         <g transform={`translate(0 ${down})`}>
-          <Repeat offset={pan * 0.3}>
-            {LOMAS_LEJOS.map(([x, r]) => (
-              <circle key={x} cx={x} cy={1060} r={r} fill={c.lomaLejos} />
-            ))}
-          </Repeat>
-          <Repeat offset={pan * 0.55}>
-            {LOMAS_MEDIO.map(([x, r]) => (
-              <circle key={x} cx={x} cy={1240} r={r} fill={c.lomaMedio} />
-            ))}
-            {sinArboles ? null : ARBOLES.map(([x, s]) => <Arbol key={x} x={x} y={830} s={s * 0.8} />)}
-          </Repeat>
+          <g filter={blurLejos}>
+            <Repeat offset={pan * 0.3}>
+              {LOMAS_LEJOS.map(([x, r]) => (
+                <circle key={x} cx={x} cy={1060} r={r} fill={c.lomaLejos} />
+              ))}
+            </Repeat>
+          </g>
+          <g filter={blurMedio}>
+            <Repeat offset={pan * 0.55}>
+              {LOMAS_MEDIO.map(([x, r]) => (
+                <circle key={x} cx={x} cy={1240} r={r} fill={c.lomaMedio} />
+              ))}
+              {sinArboles ? null : ARBOLES.map(([x, s]) => <Arbol key={x} x={x} y={830} s={s * 0.8} vol={vol} />)}
+            </Repeat>
+          </g>
           <Repeat offset={pan}>
-            <rect x={0} y={880} width={W} height={1400} fill={c.pasto} />
+            <rect x={0} y={880} width={W} height={1400} fill={vol ? "url(#pasto25)" : c.pasto} />
             {[0, 600, 1200, 1800, 2400].map((x) => (
-              <ellipse key={x} cx={x + 300} cy={890} rx={420} ry={50} fill={c.pasto} />
+              <ellipse key={x} cx={x + 300} cy={890} rx={420} ry={50} fill={vol ? "#B3DCA1" : c.pasto} />
             ))}
             {[200, 1100, 2000].map((x) => (
               <ellipse key={x} cx={x} cy={1000} rx={260} ry={28} fill={c.pastoClaro} opacity={0.6} />
@@ -148,6 +186,7 @@ export const Bosque: React.FC<{ pan?: number; tilt?: number; zoom?: number; sinA
             ))}
           </Repeat>
         </g>
+        {vol ? <rect width={1920} height={1080} fill="url(#sol25)" /> : null}
       </svg>
     </AbsoluteFill>
   );

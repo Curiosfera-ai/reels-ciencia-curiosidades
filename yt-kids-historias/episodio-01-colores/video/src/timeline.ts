@@ -137,20 +137,88 @@ export const { syllables: SYLLABLES, lyrics: LYRICS } = buildSong();
 
 // --- Boca y parpadeo ----------------------------------------------------
 
-const SYLLABLE_RATE: Record<Speaker, number> = { pino: 5, nube: 3.4, beto: 6.5 };
+// Forma de la boca: `open` (cuánto se abre) y `wide` (cuán ancha: la O y la U se
+// redondean, la E y la I se estiran, la M, la B y la P cierran los labios).
+export type MouthShape = { open: number; wide: number };
 
-export const mouthOf = (speaker: Speaker, t: number): number => {
+const CLOSED: MouthShape = { open: 0, wide: 1 };
+const VISEMES: Record<string, MouthShape> = {
+  a: { open: 1, wide: 0.95 },
+  e: { open: 0.6, wide: 1.15 },
+  i: { open: 0.38, wide: 1.25 },
+  o: { open: 0.85, wide: 0.6 },
+  u: { open: 0.5, wide: 0.45 },
+  m: CLOSED,
+  b: CLOSED,
+  p: CLOSED,
+  f: { open: 0.15, wide: 1.05 },
+  v: { open: 0.15, wide: 1.05 },
+};
+const CONSONANT: MouthShape = { open: 0.3, wide: 0.9 };
+
+const letters = (text: string) =>
+  text
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-zñ]/g, "");
+
+const mix = (a: MouthShape, b: MouthShape, k: number): MouthShape => ({
+  open: a.open + (b.open - a.open) * k,
+  wide: a.wide + (b.wide - a.wide) * k,
+});
+
+// Reparte las letras de la palabra a lo largo de su duración y mezcla suave entre una y otra
+const shapeInWord = (w: Word, t: number): MouthShape => {
+  const ls = letters(w.text);
+  if (!ls.length) return CLOSED;
+  const pos = ((t - w.start) / Math.max(0.05, w.end - w.start)) * ls.length;
+  const i = Math.min(ls.length - 1, Math.floor(pos));
+  const shapeAt = (k: number) => VISEMES[ls[Math.min(ls.length - 1, k)]] ?? CONSONANT;
+  const k = pos - i;
+  const s = k > 0.6 ? mix(shapeAt(i), shapeAt(i + 1), (k - 0.6) / 0.4) : shapeAt(i);
+  // abre al empezar y cierra al terminar la palabra
+  const edge = Math.min(1, (t - w.start) / 0.05, (w.end - t) / 0.06);
+  return { open: s.open * Math.max(0, edge), wide: s.wide };
+};
+
+export const mouthShapeOf = (speaker: Speaker, t: number): MouthShape => {
   if (t >= SONG_START && t < SONG_END) {
     const s = SYLLABLES.find((x) => t >= x.start && t < x.end - 0.04);
-    if (!s) return 0;
+    if (!s) return CLOSED;
     const p = t - s.start;
-    return Math.min(1, p / 0.08) * (s.end - s.start > 0.5 ? 0.85 : 0.85 * Math.sin((Math.PI * p) / (s.end - s.start)) + 0.15);
+    const open = Math.min(1, p / 0.08) * (s.end - s.start > 0.5 ? 0.85 : 0.85 * Math.sin((Math.PI * p) / (s.end - s.start)) + 0.15);
+    return { open, wide: 0.85 };
   }
   const l = LINES.find((x) => x.speaker === speaker && t >= x.start && t < x.end);
-  if (!l) return 0;
+  if (!l) return CLOSED;
   const w = l.words.find((x) => t >= x.start && t < x.end);
-  if (!w) return 0;
-  return Math.abs(Math.sin(Math.PI * SYLLABLE_RATE[speaker] * (t - w.start)));
+  return w ? shapeInWord(w, t) : CLOSED;
+};
+
+export const mouthOf = (speaker: Speaker, t: number): number => mouthShapeOf(speaker, t).open;
+
+// --- Gestos ligados a palabras ------------------------------------------
+
+// Pino señala cuando nombra algo y festeja con los brazos arriba en "¡Muy bien!"
+const SENALA = /^(manzana|cielo|sol|laguna|flores|girasol|mariposa|hongo|frutilla)/;
+const FESTEJA = /^bien/;
+
+export type Gesture = { point: number; cheer: number };
+
+export const gestureOf = (speaker: Speaker, t: number): Gesture => {
+  let point = 0;
+  let cheer = 0;
+  for (const l of LINES) {
+    if (l.speaker !== speaker || t < l.start - 0.5 || t > l.end + 1.2) continue;
+    for (const w of l.words) {
+      const key = letters(w.text);
+      const env = Math.min(1, Math.max(0, (t - (w.start - 0.25)) / 0.3), Math.max(0, (w.end + 0.9 - t) / 0.4));
+      if (SENALA.test(key)) point = Math.max(point, env);
+      if (FESTEJA.test(key)) cheer = Math.max(cheer, env);
+    }
+  }
+  return { point, cheer };
 };
 
 const BLINK: Record<Speaker, [number, number, number]> = {

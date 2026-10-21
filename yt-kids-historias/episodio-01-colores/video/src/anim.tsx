@@ -5,6 +5,12 @@ import { Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 // tiempo global (diálogos, parpadeos) y el plano usa su tiempo local.
 export const PlanoStart = createContext(0);
 
+// "plano": dibujo plano (el episodio actual). "25d": volumen con degradés, sombras
+// de contacto, fondo desenfocado por capas y cámara que se acerca despacio.
+export type Estilo = "plano" | "25d";
+export const EstiloCtx = createContext<Estilo>("plano");
+export const useEstilo = () => useContext(EstiloCtx);
+
 export const useTime = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
